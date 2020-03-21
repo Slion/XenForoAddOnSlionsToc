@@ -1,6 +1,6 @@
 <?php
 
-namespace Slions\Toc\BbCode;
+namespace Slions\Toc;
 
 #use XF\BbCode\Traverser;
 #use XF\Str\Formatter;

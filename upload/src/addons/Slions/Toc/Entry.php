@@ -1,9 +1,11 @@
 <?php
 
+namespace Slions\Toc;
+
 /**
  Define an entry in our TOC.
 */
-class TocEntry
+class Entry
 {
 	public $mDepth = 0;
 	public $mText = "Root";
