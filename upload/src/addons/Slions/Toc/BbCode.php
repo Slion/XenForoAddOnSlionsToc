@@ -12,6 +12,28 @@ class BbCode
 	static $debug = false;
 
 
+	private static function getTocId($entity)
+	{
+		
+		if ($entity instanceof \XF\Entity\Post)
+		{
+			//\XF::dump("IS POST");
+			// Get the post id containing this TOC
+			return $entity->post_id;
+		}
+		else if ($entity instanceof \XFRM\Entity\ResourceUpdate)
+		{
+			return $entity->resource_id;
+		}
+		else
+		{
+			\XF::dump("SlionsToc: unsupported entity");	
+			return 0;
+		}
+		
+	} 
+
+
 	public static function handleTagH($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{
 		if (BbCode::$debug)
@@ -30,24 +52,12 @@ class BbCode
 		if ($entity==null)
 		{
 			// Defensive
-			return "No entity";
+			\XF::dump("SlionsToc: no entity");			
+			// Still show a header without id
+			return "<$tag[tag]>$tagChildren[0]</$tag[tag]>";
 		}
 
-		$currentPostId = "";
-		
-		if ($entity instanceof \XF\Entity\Post)
-		{
-			//\XF::dump("IS POST");
-			// Get the post id containing this TOC
-			$currentPostId = $entity->post_id;
-		}
-
-
-		//\XF::dumpSimple($var);
-
-		//return "<" . $tag["tag"] . ">$tagChildren[0]</" . $tag["tag"] . ">";
-
-		//return "<$tag[tag]>$tagChildren[0]</$tag[tag]>";
+		$currentPostId = BbCode::getTocId($entity);
 
 		// Initialize our output 		
 		$output = "";
@@ -91,29 +101,15 @@ class BbCode
 		if ($entity==null)
 		{
 			// Defensive
-			return "No entity";
+			\XF::dump("SlionsToc: no entity");
+			return "";
 		}
 
-		$currentPostId = "";
-		$rawPostText = "";
+		$currentPostId = BbCode::getTocId($entity);
 
-		if ($entity instanceof \XF\Entity\Post)
-		{
-			//\XF::dump("IS POST");
-			// Get the post id containing this TOC
-			$currentPostId = $entity->post_id;
-			$rawPostText = $entity->message;
-		}
+		// That works at least for resource and post
+		$rawPostText = $entity->message;;
 
-		//\XF::dump($entity);
-		//\XF::dump($currentPostId);
-		//\XF::dump($rawPostText);
-
-
-		// TODO: resource
-		//else{}
-		
-		//return "<br />TOC<br />";
 				
 		$headerDepth = array
 			(
