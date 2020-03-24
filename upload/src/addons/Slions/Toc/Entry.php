@@ -72,7 +72,8 @@ class Entry
 		$output = "";
 		if ($this->mDepth>0) // Skip the root node
 		{
-			$output .= '<li><a href="'. $GLOBALS['requestUri'] .'#'. $this->mId . '">' . $this->mText . '</a></li>';
+			//$output .= '<li><a href="'. $GLOBALS['requestUri'] .'#'. $this->mId . '">' . $this->mText . '</a></li>';
+			$output .= '<li><a href="#'. $this->mId . '">' . $this->mText . '</a></li>';
 		}
 		
 		// Output our children if any

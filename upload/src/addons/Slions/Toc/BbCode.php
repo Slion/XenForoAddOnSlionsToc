@@ -13,6 +13,19 @@ class BbCode
 {
 	static $debug = false;
 
+	private static function doDebug(array $options)
+	{
+		// Confusingly user is not the logged user but the post/entity author.
+		//if (BbCode::$debug && $options['user']->user_id == 1)
+		// For now just specify the post ID you want to debug to avoid spamming users on production site
+		if (BbCode::$debug && $options['entity']->post_id == 89)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 
 	private static function getTocId($entity)
 	{
@@ -44,14 +57,16 @@ class BbCode
 
 	public static function handleTagH($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{
-		if (BbCode::$debug)
+		if (BBCode::doDebug($options))
 		{
+			/*
 			\XF::dump("handleTagH");	
 			\XF::dump($tagChildren);
 			\XF::dump($tagOption);
 			\XF::dump($tag);
 			\XF::dump($options);
 			\XF::dump($renderer);	
+			*/
 		}
 
 		
@@ -109,7 +124,7 @@ class BbCode
 			return "";
 		}
 
-		if (BbCode::$debug)
+		if (BBCode::doDebug($options))
 		{			
 			\XF::dump("handleTagTOC");
 			\XF::dump($tagChildren);
@@ -117,6 +132,7 @@ class BbCode
 			\XF::dump($tag);
 			\XF::dump($options);
 			\XF::dump($renderer);
+			//\XF::dump($GLOBALS);			
 			//\XF::dump($renderer->getRules()->getContext());
 		}
 		//\XF::dumpSimple($var);
@@ -149,6 +165,7 @@ class BbCode
 			);
 		
 		$output = "";
+		//$output .= $options['user']->user_id  . "<br />"; 
 		//$output .= $renderer->getRules()->getContext() . "-" . $renderer->getRules()->getSubContext() . "<br />";
 
 		
