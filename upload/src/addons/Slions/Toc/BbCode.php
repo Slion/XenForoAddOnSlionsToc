@@ -151,7 +151,7 @@ class BbCode
 		$currentPostId = BbCode::getTocId($entity);
 
 		// That works at least for resource and post
-		$rawPostText = $entity->message;;
+		$rawPostText = $entity->message;
 
 				
 		$headerDepth = array
