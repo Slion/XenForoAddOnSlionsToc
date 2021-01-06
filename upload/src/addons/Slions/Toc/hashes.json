@@ -1,9 +1,10 @@
 {
-    "src/addons/Slions/Toc/addon.json": "2527ef2da18e42565396b950fd5aacb4f8dc2f2bc1ec7ca9d446a358d062520f",
+    "src/addons/Slions/Toc/addon.json": "93eeeb81af975fe9d519c8690e521ec524308c7cfced3ddbfc0582cef619d953",
     "src/addons/Slions/Toc/BbCode.php": "9559e6a33c6a31ebbeb769de78726e572ca93741281918ae4c93f615967b370a",
     "src/addons/Slions/Toc/Entry.php": "9f34992dbb69444ef8998c4f4bab0ca3c15b2235722be13611de09b09bae8f6c",
     "src/addons/Slions/Toc/XF/BbCode/Renderer/Html.php": "a7b8d19330bd8ed7cff9a6d913404cc3ca884773800b3b0a0e2cbec83529da37",
     "src/addons/Slions/Toc/XF/Template/Templater.php": "17d0f1692ac6f8d8d6c16f5c63d10a74f96992875e1ad019d1557ee2da485c48",
+    "src/addons/Slions/Toc/_data/activity_summary_definitions.xml": "99d8c2563a31320d66f958fc8bda78613545f5f7959bb3cf5318805e3a3c39d2",
     "src/addons/Slions/Toc/_data/admin_navigation.xml": "064ec797484ac00d5ee37367b50b06846d11f480d00550997712707f8fdac8c0",
     "src/addons/Slions/Toc/_data/admin_permission.xml": "ec6fb97cebf0bceb24f1ed1d5778c1db54eeb7535fbb3e31d824840e7aa9ff87",
     "src/addons/Slions/Toc/_data/advertising_positions.xml": "d2f7cbe844bb1df3cf878d22ff6306249245c8ff6b0b87b9b729744bec538261",
@@ -27,7 +28,7 @@
     "src/addons/Slions/Toc/_data/style_properties.xml": "8b8690a8512f01f219dd2da76e3d0c5f62afc1f317b87794a7331c859c36a7a8",
     "src/addons/Slions/Toc/_data/style_property_groups.xml": "68e1879cb3846c42d978487aa8d5145ff3335fc39e58016878824d5cf3fd684c",
     "src/addons/Slions/Toc/_data/templates.xml": "95d4b078b90e74e773cef6695ef94c742e74b8d62e6798738f11f0215a58faee",
-    "src/addons/Slions/Toc/_data/template_modifications.xml": "05a97e9cd5336cb18eaf67d4198965b9b029e7f64b8ce49a941131bd3df73846",
+    "src/addons/Slions/Toc/_data/template_modifications.xml": "0ec82c81d81859f1893d10f60d9d33022aa2bbdd81de1da8cc155d6cea4546c0",
     "src/addons/Slions/Toc/_data/widget_definitions.xml": "37e46965256430f24004c2e7f08ba08f9b0d1cbcc4d70e84b3f4e3ffb713e64b",
     "src/addons/Slions/Toc/_data/widget_positions.xml": "a29cee66134f6bc5d75ed9df1eef21096c24401915c5b5c774389c3d7bb2d5b3"
 }
