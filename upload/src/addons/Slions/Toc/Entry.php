@@ -14,6 +14,9 @@ class Entry
 	public $mIndex = -1;
 	public $mChildren = array();
 	public $mUsed = false;
+	// Only used by our root entry to help build our headers
+	public $mNextHeaderId = 0;
+	public $mLastEditDate = 0;
 	
 	/**
 	For debug purposes.
@@ -91,8 +94,10 @@ class Entry
 
 	
 	/**
-	Add an entry to our TOC.
-	*/
+	 * Add an entry to our TOC.
+	 * Return false if the given entry does not belong in this branch of our TOC.
+	 * Return true if the given entry was added to this branch of our TOC.
+	 */
 	public function addTocEntry($aNewTocEntry)
 	{	
 		// Check if it's potentially one of our children
@@ -102,7 +107,7 @@ class Entry
 			{
 				// No child yet take that one then
 				array_push($this->mChildren, $aNewTocEntry);
-				return true;							
+				return true;
 			}
 			
 			if ((end($this->mChildren)->addTocEntry($aNewTocEntry))==false)
@@ -121,4 +126,28 @@ class Entry
 				
 		return false;
 	}
+
+	/**
+	 * Recursively count our children.
+	 */
+	public function countEntries()
+	{
+		$count = count($this->mChildren);
+
+		foreach($this->mChildren as $child)
+		{
+			$count += $child->countEntries();
+		}
+
+		return $count;
+	}
+
+	/**
+	 * Check if all our headers are accounted for.
+	 */
+	public function isComplete()
+	{
+		return $this->countEntries()==$this->mNextHeaderId;
+	}
+
 }
