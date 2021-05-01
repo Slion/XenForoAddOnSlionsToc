@@ -68,19 +68,16 @@ class BbCode
 		// Initialize our output early on to allow for debug
 		$output = "";
 
-
-		//BbCode::createHeaderCountIfNeeded();
-
 		if (BBCode::doDebug($options))
 		{
-			/*
-			\XF::dump("handleTagH");	
-			\XF::dump($tagChildren);
-			\XF::dump($tagOption);
-			\XF::dump($tag);
-			\XF::dump($options);
-			\XF::dump($renderer);	
-			*/
+			//$output .= $tagOption . "<br />";
+			//\XF::dump("handleTagH");	
+			//\XF::dump($tagChildren);
+			//\XF::dump($tagOption);
+			//\XF::dump($tag);
+			//\XF::dump($options);
+			//\XF::dump($renderer);	
+			
 		}				
 		
 		$entity = $options["entity"];
@@ -111,7 +108,16 @@ class BbCode
 		}
 		else
 		{
-			$id = $tocId . "-" . BbCode::getToc($tocId)->mNextHeaderId;// TODO: Use depth instead of count?
+			// Use count based id or anchor name if provided
+			if (empty($tagOption))
+			{
+				$id = $tocId . "-" . BbCode::getToc($tocId)->mNextHeaderId;
+			}
+			else
+			{
+				$id = $tocId . "-" . urlencode($tagOption);
+			}			
+			
 			//$output .= '<' . $tag['tag'] .' class="block-header" id="'. $id .'">\n::before\n<a>' . $text . '</a>\n::after\n</' . $tag['tag'] .'>';
 			// Complex elements was needed to get the target to work well with theme floating top bar.
 			// This was taken from forum list categories
@@ -188,12 +194,13 @@ class BbCode
 	{
 		if (array_key_exists('slionsToc'.$aTocId, $GLOBALS)
 		// If the TOC was already created but there was an edit we need to reset it
-		// Check if all headers have already been accounted for 
+		// Check if all headers have already been accounted for
+		// We could not get this working for some reason after inline edit so with use the date check below and that worked just fine 
 		//&& !BbCode::getToc($aTocId)->isComplete()
 		// If our entity was edited since generated our TOC it is not valid anymore
 		&& BbCode::getToc($aTocId)->mLastEditDate == $aEntity->last_edit_date)
 		{
-			// This TOC was already created
+			// This TOC was already created and is still valid
 			return false;
 		}
 
@@ -222,7 +229,7 @@ class BbCode
 		
 		// Parse our headers out of the raw text of our post
 		$headers=array(); // This will contain the output of our parsing
-		preg_match_all('~\[h([1-6])](.*?)\[/h\1\]~',$aEntity->message,$headers,PREG_SET_ORDER);
+		preg_match_all('~\[h([1-6])=?(.*?)](.*?)\[/h\1\]~',$aEntity->message,$headers,PREG_SET_ORDER);
 		
 		$count = 0;
 				
@@ -232,10 +239,20 @@ class BbCode
 		{
 			// Create our new TOC entry
 			$tocEntry = new Entry();
-			$tocEntry->mText = $header[2];
+			$tocEntry->mText = $header[3];
 			$tocEntry->mDepth = $headerDepth['h'.$header[1]];
-			// We should use getHeaderId but that should be more optimized
-			$tocEntry->mId = $aTocId . "-" . $count;
+			// Workout our fragment id
+			if (empty($header[2]))
+			{
+				// Use $count if no name provided
+				$tocEntry->mId = $aTocId . "-" . $count;	
+			}
+			else 
+			{
+				// Otherwise use provided anchor name
+				$tocEntry->mId = $aTocId . "-" . urlencode($header[2]);					
+			}
+			
 			$tocEntry->mIndex = $count;
 			// We have a new header		
 			$toc->addTocEntry($tocEntry);	
