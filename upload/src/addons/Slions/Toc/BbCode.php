@@ -7,6 +7,11 @@ namespace Slions\Toc;
 #use XF\Template\Templater;
 #use XF\Util\Arr;
 
+function endsWith($haystack, $needle) {
+    return substr_compare($haystack, $needle, -strlen($needle)) === 0;
+}
+
+
 // For now I'm pretty sure we relly on our TOC element to come before any Hx element.
 // Consider testing and fixing this at some point.
 class BbCode
@@ -51,7 +56,7 @@ class BbCode
 		}
 		else
 		{
-			\XF::dump("SlionsToc: unsupported entity");	
+			//\XF::dump("SlionsToc: unsupported entity");	
 			return 0;
 		}		
 	} 
@@ -70,6 +75,7 @@ class BbCode
 
 		if (BBCode::doDebug($options))
 		{
+			//$output .= print_r($renderer,true) . "<br />";
 			//$output .= $tagOption . "<br />";
 			//\XF::dump("handleTagH");	
 			//\XF::dump($tagChildren);
@@ -78,16 +84,27 @@ class BbCode
 			//\XF::dump($options);
 			//\XF::dump($renderer);	
 			
+			//$output .= 'Renderer type: ' . get_class($renderer) . "<br />";
+
+			/*
+			if ($renderer instanceof \Slions\Toc\XF\BbCode\Renderer\EditorHtml)
+			{
+				$output .= 'Context: ' . print_r($renderer->getRules()->getContext(),true) . "<br />";
+				$output .= 'Sub context: ' . print_r($renderer->getRules()->getSubContext(),true) . "<br />";
+			}
+			*/
+
+
 		}				
 		
 		$entity = $options["entity"];
 
 		if ($entity==null)
 		{
-			// Defensive
-			\XF::dump("SlionsToc: no entity");
+			// This is notably the case when rendering BBcodes help page: https://staging.slions.net/help/bb-codes/
+			//\XF::dump("SlionsToc: no entity");
 			// Still show a header without id
-			return "<$tag[tag]>$tagChildren[0]</$tag[tag]>";
+			//return "<$tag[tag]>$tagChildren[0]</$tag[tag]>";
 		}
 
 		$tocId = BbCode::getTocId($entity);
@@ -105,6 +122,13 @@ class BbCode
 			// Most likely rendering for preview from thread list
 			// Forcing smaller header then
 			$output .= '<b>' . $text . '</b><br />';
+		}
+		else if($renderer instanceof \Slions\Toc\XF\BbCode\Renderer\EditorHtml)
+		{
+			// We are rendering in our WYSIWYG editor
+			// Using custom data element we can store our anchor name for it to survive editor toggles between WYSIWYG and raw edit
+			// See:  https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+			$output .=  "<$tag[tag] data-id='$tagOption'>$text</$tag[tag]>";
 		}
 		else
 		{
@@ -133,7 +157,9 @@ class BbCode
 		return $output;			
 	}
 
-
+	/**
+	 * 
+	 */
 	public static function handleTagTOC($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{		
 		// Initialize our output early on to allow for debug
@@ -153,27 +179,44 @@ class BbCode
 
 		$entity = $options["entity"];
 
-		if ($entity==null)
-		{
-			// Defensive
-			\XF::dump("SlionsToc: no entity");
-			return "";
-		}
-
 		$tocId = BbCode::getTocId($entity);		
 		if (BbCode::buildToc($tocId,$entity) && BBCode::doDebug($options))
 		{
 			$output .= "TOC rebuilt<br/>";
 		}
 		
-		$output .= BbCode::getToc($tocId)->renderHtmlToc(0,8);
+		
+		if($renderer instanceof \Slions\Toc\XF\BbCode\Renderer\EditorHtml)
+		{
+			// We are rendering in our WYSIWYG editor
+			// Just preserve our TOC BbCode for now
+			// TODO: Do something fancy like display Font Awesome icon?
+			// TODO: Looks like we are loosing trailling new lines here
+			$output .=  "[TOC][/TOC]";
+		}
+		// TODO: preview context?
+		else
+		{
+			$output .= BbCode::getToc($tocId)->renderHtmlToc(0,8);	
+		}
+
+
+		
 		//return get_class($renderer) . $output;
 
 		if (BBCode::doDebug($options))
 		{			
-			//$output .= print_r($renderer,true);
-			//$output .= print_r($renderer->getRules()->getSubContext(),true);
-			//$output .= print_r($renderer->getRules()->getContext(),true);
+			// That goes OOM, probably because of recursion
+			//$output .= print_r($renderer,true) . "<br />";
+			//$output .= 'Context: ' . print_r($renderer->getRules()->getContext(),true) . "<br />";
+			//$output .= 'Sub context: ' . print_r($renderer->getRules()->getSubContext(),true) . "<br />";
+
+			if ($renderer instanceof Slions\Toc\XF\BbCode\Renderer\EditorHtml)
+			{
+				$output .= 'Context: ' . print_r($renderer->getRules()->getContext(),true) . "<br />";
+				$output .= 'Sub context: ' . print_r($renderer->getRules()->getSubContext(),true) . "<br />";
+			}
+
 			//\XF::dump("handleTagTOC");
 			//\XF::dump($tagChildren);
 			//\XF::dump($tagOption);
@@ -192,13 +235,15 @@ class BbCode
 	 */
 	private static function buildToc($aTocId, $aEntity)
 	{
+		// Entity object check was need as we were chocking on it while toggling between WYSIWYG and raw editor.
+
 		if (array_key_exists('slionsToc'.$aTocId, $GLOBALS)
 		// If the TOC was already created but there was an edit we need to reset it
 		// Check if all headers have already been accounted for
 		// We could not get this working for some reason after inline edit so with use the date check below and that worked just fine 
 		//&& !BbCode::getToc($aTocId)->isComplete()
 		// If our entity was edited since generated our TOC it is not valid anymore
-		&& BbCode::getToc($aTocId)->mLastEditDate == $aEntity->last_edit_date)
+		&& (is_object($aEntity) && BbCode::getToc($aTocId)->mLastEditDate == $aEntity->last_edit_date))
 		{
 			// This TOC was already created and is still valid
 			return false;
@@ -207,7 +252,14 @@ class BbCode
 		$toc = new Entry();
 		$GLOBALS['slionsToc'.$aTocId] = $toc;
 		//$toc->mLastEditDate = $aEntity->getValue('last_edit_date');
-		$toc->mLastEditDate = $aEntity->last_edit_date;
+		$content = "";
+		
+		if (is_object($aEntity))
+		{
+			$toc->mLastEditDate = $aEntity->last_edit_date;
+			$content = $aEntity->message;
+		}
+		
 
 		$headerDepth = array
 			(
@@ -226,10 +278,33 @@ class BbCode
 		//$output .= "<br>VIEW PARAMS<br>";
 	    //$output .= $this->dumpRec($viewParams,0,20);
 		//return $output;
+				
+		// Faking some render for our help page		
+		if ($aEntity==null 
+		&& endsWith($GLOBALS['_ENV']['REQUEST_URI'],'/help/bb-codes/'))
+		{
+			// Assuming help page I guess
+			$content =<<<CNT
+			[TOC][/TOC]
+			[h1=anchor one]Heading One[/h1]
+			[h2]Heading Two[/h2]
+			[h3]Heading Three[/h3]
+			[h4]Heading Four[/h4]
+			[h5]Heading Five[/h5]
+			[h6]Heading Six[/h6]
+			CNT;
+		}
 		
+		if (empty($content))
+		{
+			// Don't build our TOC if no content
+			// That's just fine though that's notably the case in the editor
+			return false;
+		}
+
 		// Parse our headers out of the raw text of our post
 		$headers=array(); // This will contain the output of our parsing
-		preg_match_all('~\[h([1-6])=?(.*?)](.*?)\[/h\1\]~',$aEntity->message,$headers,PREG_SET_ORDER);
+		preg_match_all('~\[h([1-6])=?(.*?)](.*?)\[/h\1\]~',$content,$headers,PREG_SET_ORDER);
 		
 		$count = 0;
 				
