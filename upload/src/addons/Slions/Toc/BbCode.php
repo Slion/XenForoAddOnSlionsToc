@@ -116,10 +116,13 @@ class BbCode
 		}
 
 		$text = "";
-		if (count($tagChildren)>0) // No children when empty tag
+		if (count($tagChildren)>0) // No children when empty tag, test to avoid throwing exception
 		{
 			$text = $tagChildren[0];		
 		}
+
+		// TODO: support rendering our $text italic, bold, underline and such I guess.
+		// Also smiley and unicode emoji icons I guess
 
 		if (BbCode::isContextThreadPreview($renderer))
 		{

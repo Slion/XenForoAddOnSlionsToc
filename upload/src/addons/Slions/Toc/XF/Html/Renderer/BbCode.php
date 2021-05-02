@@ -23,9 +23,16 @@ class BbCode extends XFCP_BbCode
 	 */
 	public function handleTagH($text, \XF\Html\Tag $tag)
 	{
+		//return parent::handleTagH($text,$tag);	
+
+		// Probably just to apply basic formatting: italic, bold, underline and such
+		// Yes it looks like this allows italic in our header to be properly translated from HTML to BbCode
+		// However we don't yet support doing the translation from BbCode back to HTML
+		$text = $this->renderCss($tag, $text);	
+
 		$id = $tag->attribute('data-id');
 		// As BB code are usually displayed in uppercase	
-		$tagName = strtoupper($tag->tagName());
+		$tagName = strtoupper($tag->tagName());		
 
 		if (empty($id))
 		{
