@@ -207,8 +207,8 @@ class BbCode
 			// We are rendering in our WYSIWYG editor
 			// Just preserve our TOC BbCode for now
 			// TODO: Do something fancy like display Font Awesome icon?
-			// TODO: Looks like we are loosing trailling new lines here
-			$output .=  "[TOC][/TOC]";
+			// Paragraph warp makes sure the TOC stays on its own line
+			$output .=  "<p>[TOC][/TOC]</p>";
 		}
 		// TODO: preview context?
 		else
