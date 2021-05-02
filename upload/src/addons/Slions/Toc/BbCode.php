@@ -115,7 +115,11 @@ class BbCode
 			$output .= "H rebuilt TOC<br/>";
 		}
 
-		$text = $tagChildren[0];
+		$text = "";
+		if (count($tagChildren)>0) // No children when empty tag
+		{
+			$text = $tagChildren[0];		
+		}
 
 		if (BbCode::isContextThreadPreview($renderer))
 		{
@@ -128,7 +132,16 @@ class BbCode
 			// We are rendering in our WYSIWYG editor
 			// Using custom data element we can store our anchor name for it to survive editor toggles between WYSIWYG and raw edit
 			// See:  https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
-			$output .=  "<$tag[tag] data-id='$tagOption'>$text</$tag[tag]>";
+
+			if (empty($tagOption))
+			{
+				$output .=  "<$tag[tag]>$text</$tag[tag]>";
+			}
+			else
+			{
+				$output .=  "<$tag[tag] data-id='$tagOption'>$text</$tag[tag]>";		
+			}
+			
 		}
 		else
 		{
@@ -304,7 +317,7 @@ class BbCode
 
 		// Parse our headers out of the raw text of our post
 		$headers=array(); // This will contain the output of our parsing
-		preg_match_all('~\[h([1-6])=?(.*?)](.*?)\[/h\1\]~',$content,$headers,PREG_SET_ORDER);
+		preg_match_all('~\[h([1-6])=?(.*?)](.*?)\[/h\1\]~i',$content,$headers,PREG_SET_ORDER);
 		
 		$count = 0;
 				
