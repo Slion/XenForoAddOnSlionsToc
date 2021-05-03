@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phrases>
-  <phrase title="custom_bb_code_desc.h1" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_desc.h2" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_desc.h3" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_desc.h4" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_desc.h5" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_desc.h6" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_desc.toc" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.h1" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.h2" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.h3" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.h4" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.h5" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.h6" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_example.toc" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
+  <phrase title="custom_bb_code_desc.h1" version_id="2020000" version_string="2.2.0"><![CDATA[Will be shown in your Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_desc.h2" version_id="2020000" version_string="2.2.0"><![CDATA[Will be shown in your Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_desc.h3" version_id="2020000" version_string="2.2.0"><![CDATA[Will be shown in your Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_desc.h4" version_id="2020000" version_string="2.2.0"><![CDATA[Will be shown in your Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_desc.h5" version_id="2020000" version_string="2.2.0"><![CDATA[Will be shown in your Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_desc.h6" version_id="2020000" version_string="2.2.0"><![CDATA[Will be shown in your Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_desc.toc" version_id="2020000" version_string="2.2.0"><![CDATA[Display your post's Table Of Content constructed from its headings.]]></phrase>
+  <phrase title="custom_bb_code_example.h1" version_id="2020000" version_string="2.2.0"><![CDATA[[H1=permalink]Nice heading[/H1]]]></phrase>
+  <phrase title="custom_bb_code_example.h2" version_id="2020000" version_string="2.2.0"><![CDATA[[H2=permaling]Demo[/H2]]]></phrase>
+  <phrase title="custom_bb_code_example.h3" version_id="2020000" version_string="2.2.0"><![CDATA[[h3=privacy]Privacy policy[/h3]]]></phrase>
+  <phrase title="custom_bb_code_example.h4" version_id="2020000" version_string="2.2.0"><![CDATA[[h4]Fourth level[/h4]]]></phrase>
+  <phrase title="custom_bb_code_example.h5" version_id="2020000" version_string="2.2.0"><![CDATA[[H5=linkanchor]Five level down[/H5]]]></phrase>
+  <phrase title="custom_bb_code_example.h6" version_id="2020000" version_string="2.2.0"><![CDATA[[H6]Last level[/H6]]]></phrase>
+  <phrase title="custom_bb_code_example.toc" version_id="2020000" version_string="2.2.0"><![CDATA[[TOC][/TOC]
+
+[h1=anchor one]Heading One[/h1]
+[h2]Heading Two[/h2]
+[h3]Heading Three[/h3]
+[h4]Heading Four[/h4]
+[h5]Heading Five[/h5]
+[h6]Heading Six[/h6]]]></phrase>
   <phrase title="custom_bb_code_output.h1" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.h2" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.h3" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
@@ -21,11 +28,11 @@
   <phrase title="custom_bb_code_output.h5" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.h6" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.toc" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_title.h1" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
-  <phrase title="custom_bb_code_title.h2" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
-  <phrase title="custom_bb_code_title.h3" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
-  <phrase title="custom_bb_code_title.h4" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
-  <phrase title="custom_bb_code_title.h5" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
-  <phrase title="custom_bb_code_title.h6" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
-  <phrase title="custom_bb_code_title.toc" version_id="0" version_string="0.0.1"><![CDATA[Slions TOC]]></phrase>
+  <phrase title="custom_bb_code_title.h1" version_id="2020000" version_string="2.2.0"><![CDATA[Heading first level]]></phrase>
+  <phrase title="custom_bb_code_title.h2" version_id="2020000" version_string="2.2.0"><![CDATA[Heading second level]]></phrase>
+  <phrase title="custom_bb_code_title.h3" version_id="2020000" version_string="2.2.0"><![CDATA[Heading third level]]></phrase>
+  <phrase title="custom_bb_code_title.h4" version_id="2020000" version_string="2.2.0"><![CDATA[Heading fourth level]]></phrase>
+  <phrase title="custom_bb_code_title.h5" version_id="2020000" version_string="2.2.0"><![CDATA[Heading fifth level]]></phrase>
+  <phrase title="custom_bb_code_title.h6" version_id="2020000" version_string="2.2.0"><![CDATA[Heading sixth level]]></phrase>
+  <phrase title="custom_bb_code_title.toc" version_id="2020000" version_string="2.2.0"><![CDATA[Table Of Content]]></phrase>
 </phrases>
