@@ -11,6 +11,20 @@
 # Demo
 Visit [slions.net] to see what it looks like.
 
+# Release process
+
+Go to the root of your XenForo installation and set the new release version by running:
+
+`php cmd.php xf-addon:bump-version Slions/Toc --version-id 2020100`
+
+Generate the release archive using the following command:
+
+`php cmd.php xf-addon:build-release Slions/Toc`
+
+The generate ZIP file can be found in the following folder:
+
+`/src/addons/Slions/Toc/_releases`
+
 # Resources
 
 - [Add-on available on XenForo.com]
