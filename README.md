@@ -6,7 +6,7 @@
   - H1, H2, H3, H4, H5, H6: For various headings level.  
 - Provides editor buttons for headings from level one to four and the table of content itself.
 - Supports WYSIWYG editor.
-- Supports named anchor so you can reorganize headings in your post without worrying about broken links. Just do [H1=anchor name]My named heading[/H1]
+- Supports named anchor so you can reorganize headings in your post without worrying about broken links. Just do `[H1=anchor name]My heading[/H1]`
 
 # Demo
 Visit [slions.net] to see what it looks like.
@@ -21,7 +21,7 @@ Generate the release archive using the following command:
 
 `php cmd.php xf-addon:build-release Slions/Toc`
 
-The generate ZIP file can be found in the following folder:
+The generated ZIP file can be found in the following folder:
 
 `/src/addons/Slions/Toc/_releases`
 
