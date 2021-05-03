@@ -40,9 +40,12 @@ class EditorHtml extends XFCP_EditorHtml
 	{
 		//\XF::dump($tag);
 
-		if ($tag['callback_class']!='Slions\Toc\BbCode')
+		// Check if that tag belong to us
+		if (!($tag['callback_class']=='Slions\Toc\BbCode' 
+		// Only render Hx tags in HTML editor, TOC tag is left raw for now
+			&& $tag['callback_method']=='handleTagH'))
 		{
-			// Do not enable tags that do not belong to us
+			
 			return parent::getCustomTagConfig($tag);
 		}
 				
@@ -185,7 +188,8 @@ class EditorHtml extends XFCP_EditorHtml
 	 * In our working case with HEADING this is taking care of removing our <break />
 	 * From EditorHtml.php
 	 * 
-	 * We had to override and copy this function implementation in order to fix our extra new line whenever 
+	 * We had to override and copy this function implementation in order to fix our extra new line whenever editor HTML is rendered.
+	 * See: https://xenforo.com/community/threads/parse-custom-bbcode-in-editorhtml-cant-add-new-tags.147361/
 	 */
 	public function filterFinalOutput($output)
 	{

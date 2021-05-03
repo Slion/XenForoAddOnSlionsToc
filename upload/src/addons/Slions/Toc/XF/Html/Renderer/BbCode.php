@@ -9,6 +9,7 @@ namespace Slions\Toc\XF\Html\Renderer;
 
 /**
  * This class is doing convertion from HTML to BbCode in our Froala editor when user switches from WYSIWYG to raw BB code editor 
+ * That's also obviously used when saving from our WYSIWIG editor to obtain the raw text which is stored in our database.
  */
 class BbCode extends XFCP_BbCode
 {

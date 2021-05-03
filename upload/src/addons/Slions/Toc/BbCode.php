@@ -208,6 +208,7 @@ class BbCode
 			// Just preserve our TOC BbCode for now
 			// TODO: Do something fancy like display Font Awesome icon?
 			// Paragraph warp makes sure the TOC stays on its own line
+			// That's not even used for now since we disabled rendering in HTML editor
 			$output .=  "<p>[TOC][/TOC]</p>";
 		}
 		// TODO: preview context?
