@@ -1,10 +1,10 @@
 {
-    "src/addons/Slions/Toc/addon.json": "f6cfaa98fb6cafb9adbbadcf22522621b85023446512c4a6b115fac4f184c04c",
+    "src/addons/Slions/Toc/addon.json": "031039b2b42d32a7718585d4554e6d7fc895e703f1de8625b5b35f936a860586",
     "src/addons/Slions/Toc/BbCode.php": "bd42ea1b91d87ad3e247c4d809048813c045da798bc0ce3aae68568f61dd7072",
     "src/addons/Slions/Toc/Entry.php": "75699ea3eb653dfbd29e861966323c69eebeccd52921564bb131a0790872f808",
     "src/addons/Slions/Toc/XF/BbCode/Renderer/EditorHtml.php": "7eeadacfd14f1d66e2c60679e4cbee0cc5600bbac35d46fbc19906a46b175de5",
     "src/addons/Slions/Toc/XF/BbCode/Renderer/Html.php": "a7b8d19330bd8ed7cff9a6d913404cc3ca884773800b3b0a0e2cbec83529da37",
-    "src/addons/Slions/Toc/XF/Html/Renderer/BbCode.php": "d8a6e08e07346ed602e8ff4fca3f439e35a9ae16e3c8ba154de410f44b389af1",
+    "src/addons/Slions/Toc/XF/Html/Renderer/BbCode.php": "89868f59dedd2028d581c522310284af71965d7906d78be13a75402a0dd94817",
     "src/addons/Slions/Toc/XF/Template/Templater.php": "17d0f1692ac6f8d8d6c16f5c63d10a74f96992875e1ad019d1557ee2da485c48",
     "src/addons/Slions/Toc/_data/activity_summary_definitions.xml": "99d8c2563a31320d66f958fc8bda78613545f5f7959bb3cf5318805e3a3c39d2",
     "src/addons/Slions/Toc/_data/admin_navigation.xml": "064ec797484ac00d5ee37367b50b06846d11f480d00550997712707f8fdac8c0",
@@ -30,7 +30,7 @@
     "src/addons/Slions/Toc/_data/style_properties.xml": "8b8690a8512f01f219dd2da76e3d0c5f62afc1f317b87794a7331c859c36a7a8",
     "src/addons/Slions/Toc/_data/style_property_groups.xml": "68e1879cb3846c42d978487aa8d5145ff3335fc39e58016878824d5cf3fd684c",
     "src/addons/Slions/Toc/_data/templates.xml": "95d4b078b90e74e773cef6695ef94c742e74b8d62e6798738f11f0215a58faee",
-    "src/addons/Slions/Toc/_data/template_modifications.xml": "296b04ed14e837898805ef729a254639f0ad493a06fcd4e15ad1ea00c5e7aa6f",
+    "src/addons/Slions/Toc/_data/template_modifications.xml": "243e3643cc296b7377446ab55d14b2be49712f057ef21711ec4443f892735d2b",
     "src/addons/Slions/Toc/_data/widget_definitions.xml": "37e46965256430f24004c2e7f08ba08f9b0d1cbcc4d70e84b3f4e3ffb713e64b",
     "src/addons/Slions/Toc/_data/widget_positions.xml": "a29cee66134f6bc5d75ed9df1eef21096c24401915c5b5c774389c3d7bb2d5b3"
 }

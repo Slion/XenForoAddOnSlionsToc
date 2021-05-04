@@ -59,14 +59,15 @@ div.postTocInner {
 
 /**
 TOC headers styling
+Classes with fr prefix are for Froala editor.
 */
 
-.bbWrapper h1,
-.bbWrapper h2,
-.bbWrapper h3,
-.bbWrapper h4,
-.bbWrapper h5,
-.bbWrapper h6
+.fr-element.fr-view h1, .bbWrapper h1,
+.fr-element.fr-view h2, .bbWrapper h2,
+.fr-element.fr-view h3, .bbWrapper h3,
+.fr-element.fr-view h4, .bbWrapper h4,
+.fr-element.fr-view h5, .bbWrapper h5,
+.fr-element.fr-view h6, .bbWrapper h6
 {
    padding: 0;
    margin: 0.0em 0 0.0em 0;
@@ -79,41 +80,84 @@ TOC headers styling
    clear: none
 }
 
-.bbWrapper h1
+.fr-element.fr-view h1, .bbWrapper h1
 {
    font-size: @xf-fontSizeLargest;
    margin-left: 5px;
 }
 
-.bbWrapper h2
+.fr-element.fr-view h2, .bbWrapper h2
 {
    font-size: @xf-fontSizeLarger;
    margin-left: 15px;
 }
 
-.bbWrapper h3
+.fr-element.fr-view h3, .bbWrapper h3
 {
    font-size: @xf-fontSizeLarge;
    margin-left: 25px;
 }
 
-.bbWrapper h4
+.fr-element.fr-view h4, .bbWrapper h4
 {
    font-size: @xf-fontSizeLarge;
    margin-left: 35px;
 }
 
-.bbWrapper h5
+.fr-element.fr-view h5, .bbWrapper h5
 {
    font-size: @xf-fontSizeLarge;
    margin-left: 45px;
 }
 
-.bbWrapper h6
+.fr-element.fr-view h6, .bbWrapper h6
 {
    font-size: @xf-fontSizeLarge;
    margin-left: 55px;
 }
+
+/* Fix Froala bug in paragraph dropdown list */
+ul.fr-dropdown-list h5,
+ul.fr-dropdown-list h6
+{
+   font-size: 15px;
+}
+
 /* --- slions_toc.css --- END */]]></replace>
+  </modification>
+  <modification type="public" template="editor" modification_key="slions_toc_editor_js" description="Enable WYSIWYG customisation, notably paragraph format dropdown" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<!--[XF:include_js]-->]]></find>
+    <replace><![CDATA[<xf:js>
+$(document).on('editor:config', function( aEvent, aConfig, aEditor) {
+	//console.log(aConfig.paragraphFormat);
+	// Instead of just assigning we want to merge our values with our input…
+	// …to make sure we are compatible with other addons doing the same.
+	// We also need to make sure keys are properly ordered.
+	var paraFormat = {}
+	var paraFormatOrdered =	{
+					N: 'Normal',
+					H1: 'Heading 1',
+					H2: 'Heading 2',
+					H3: 'Heading 3',
+					H4: 'Heading 4',
+// Leave those guys out as they are unlikely to be ever used…
+// …and they make our dropdown menu overflow and spawn a scrollbar
+					H5: 'Heading 5',
+					H6: 'Heading 6'
+				}
+	// Init our output object to have proper key order
+	Object.assign(paraFormat,paraFormatOrdered);
+	// Carry over members from our input
+	Object.assign(paraFormat,aConfig.paragraphFormat);
+	// Make sure we still have our intended values
+	aConfig.paragraphFormat = Object.assign(paraFormat,paraFormatOrdered);
+	//console.log(aConfig.paragraphFormat);
+});	
+</xf:js>	
+<!--[XF:include_js]-->]]></replace>
+  </modification>
+  <modification type="public" template="editor_base.less" modification_key="slions_toc_editor_base" description="Avoid WYSIWYG dropdown scroll" execution_order="10" enabled="1" action="preg_replace">
+    <find><![CDATA[/@dropdown-max-height: .+;/]]></find>
+    <replace><![CDATA[@dropdown-max-height: 300px;]]></replace>
   </modification>
 </template_modifications>
