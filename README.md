@@ -1,4 +1,4 @@
-# Table Of Content Add-On for XenForo 2.x
+# Table Of Content Add-On for XenForo 2
 
 # Features
 - Provides the following BB codes:
@@ -33,6 +33,7 @@ The generated ZIP file can be found in the following folder:
 - [Porting TOC to XF2]
 - [Render Custom BB code for WYSIWYG editor]
 - [Anchor and TOC thread on XenForo]
+- [Modifying Froala editor options]
 
 [slions.net]: https://slions.net/resources/fulguris.10/
 [XenForo Development Tools]: https://xenforo.com/docs/dev/development-tools
@@ -41,3 +42,4 @@ The generated ZIP file can be found in the following folder:
 [Porting TOC to XF2]: https://xenforo.com/community/threads/porting-toc-bb-code-add-on-for-xf2-1.178041/#post-1490422
 [Anchor and TOC thread on XenForo]: https://xenforo.com/community/threads/bbcode-for-anchor-and-toc.171540/#post-1490421
 [TOC BB code implementation]: https://xenforo.com/community/threads/toc-bb-code-add-on-implementation.127502/
+[Modifying Froala editor options]: https://xenforo.com/community/threads/modifying-froala-editor-options.161305/

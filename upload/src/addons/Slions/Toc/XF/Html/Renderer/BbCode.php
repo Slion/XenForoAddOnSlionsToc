@@ -29,7 +29,8 @@ class BbCode extends XFCP_BbCode
 		// Probably just to apply basic formatting: italic, bold, underline and such
 		// Yes it looks like this allows italic in our header to be properly translated from HTML to BbCode
 		// However we don't yet support doing the translation from BbCode back to HTML
-		$text = $this->renderCss($tag, $text);	
+		// Somehow that was removed from XenForo 2.2.4 
+		//$text = $this->renderCss($tag, $text);
 
 		$id = $tag->attribute('data-id');
 		// As BB code are usually displayed in uppercase	
@@ -37,7 +38,15 @@ class BbCode extends XFCP_BbCode
 
 		if (empty($id))
 		{
-			return '[' . $tagName . ']' . $text . "[/". $tagName ."]";
+			// No anchor id yet, build one then
+			// That means that when saving from WYSIWYG all headings which do not have named anchor will get one based on their current text content
+			// It is in theory still possible to only have anchor as empty and thus using incremental id if never using WYSIWYG, that should however hardly ever be the case anymore.
+			// It also means that if the user changes the text or anchor name from raw editor they will be out of sync which could get very confusing
+			// That's ok though I guess we can live with that
+			// To generate our anchor name first URL encode our text and then throw away any URL encoded character that would look like garbadge in the address.
+			// That will notably discard emoji and other unicode characters. If the result is empty we don't care it will still receive incremental id at render time then. 
+			$anchorid = preg_replace('/%[0-9A-F]{2}/', '', urlencode($text));		
+			return '[' . $tagName . '=' . $anchorid . ']' . $text . "[/". $tagName ."]";
 		}
 		else
 		{
