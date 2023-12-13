@@ -77,12 +77,12 @@ class BbCode
 		{
 			//$output .= print_r($renderer,true) . "<br />";
 			//$output .= $tagOption . "<br />";
-			//\XF::dump("handleTagH");	
-			//\XF::dump($tagChildren);
-			//\XF::dump($tagOption);
-			//\XF::dump($tag);
-			//\XF::dump($options);
-			//\XF::dump($renderer);	
+			\XF::dump("handleTagH");	
+			\XF::dump($tagChildren);
+			\XF::dump($tagOption);
+			\XF::dump($tag);
+			\XF::dump($options);
+			\XF::dump($renderer);	
 			
 			//$output .= 'Renderer type: ' . get_class($renderer) . "<br />";
 
@@ -116,10 +116,20 @@ class BbCode
 		}
 
 		$text = "";
-		if (count($tagChildren)>0) // No children when empty tag, test to avoid throwing exception
+
+		// If ever we wanted to support rendering children tags we should do it here I guess
+		// Checkout XF/BbCode/Renderer/Html.php renderTagList and renderTagTable functions to see how they do it.
+		// For now however we decided to disable support for children tags as it does not make much sense anyway.		
+		if (count($tagChildren)==1) // No children when empty tag, test to avoid throwing exception
 		{
 			$text = $tagChildren[0];		
+		} 
+		else if (count($tagChildren)>1)
+		{
+			// We should never get there if the custom tags were defined properly
+			$text = "ERROR: Nested BB code not supported. Enable 'Stop parsing BB code' in custom BB code definition.";
 		}
+		//$text = implode('', array_merge_recursive($tagChildren));
 
 		// TODO: support rendering our $text italic, bold, underline and such I guess.
 		// Also smiley and unicode emoji icons I guess

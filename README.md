@@ -34,6 +34,7 @@ The generated ZIP file can be found in the following folder:
 - [Render Custom BB code for WYSIWYG editor]
 - [Anchor and TOC thread on XenForo]
 - [Modifying Froala editor options]
+- [Version ID format]
 
 [slions.net]: https://slions.net/resources/fulguris.10/
 [XenForo Development Tools]: https://xenforo.com/docs/dev/development-tools
@@ -43,3 +44,4 @@ The generated ZIP file can be found in the following folder:
 [Anchor and TOC thread on XenForo]: https://xenforo.com/community/threads/bbcode-for-anchor-and-toc.171540/#post-1490421
 [TOC BB code implementation]: https://xenforo.com/community/threads/toc-bb-code-add-on-implementation.127502/
 [Modifying Froala editor options]: https://xenforo.com/community/threads/modifying-froala-editor-options.161305/
+[Version ID format]: https://xenforo.com/docs/dev/add-on-structure/#recommended-version-id-format
