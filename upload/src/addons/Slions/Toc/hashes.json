@@ -1,6 +1,6 @@
 {
-    "src/addons/Slions/Toc/addon.json": "031039b2b42d32a7718585d4554e6d7fc895e703f1de8625b5b35f936a860586",
-    "src/addons/Slions/Toc/BbCode.php": "bd42ea1b91d87ad3e247c4d809048813c045da798bc0ce3aae68568f61dd7072",
+    "src/addons/Slions/Toc/addon.json": "63a2685a33a30b0fd1d4957a8e14a06b510fe7edf5518c1d97f1c4fba8147480",
+    "src/addons/Slions/Toc/BbCode.php": "d689ffa968ac893eacf9e3e6daa2115cfaa0e3db5ef3fd2bbada59d74b8901ad",
     "src/addons/Slions/Toc/Entry.php": "75699ea3eb653dfbd29e861966323c69eebeccd52921564bb131a0790872f808",
     "src/addons/Slions/Toc/XF/BbCode/Renderer/EditorHtml.php": "7eeadacfd14f1d66e2c60679e4cbee0cc5600bbac35d46fbc19906a46b175de5",
     "src/addons/Slions/Toc/XF/BbCode/Renderer/Html.php": "a7b8d19330bd8ed7cff9a6d913404cc3ca884773800b3b0a0e2cbec83529da37",
@@ -11,7 +11,7 @@
     "src/addons/Slions/Toc/_data/admin_permission.xml": "ec6fb97cebf0bceb24f1ed1d5778c1db54eeb7535fbb3e31d824840e7aa9ff87",
     "src/addons/Slions/Toc/_data/advertising_positions.xml": "d2f7cbe844bb1df3cf878d22ff6306249245c8ff6b0b87b9b729744bec538261",
     "src/addons/Slions/Toc/_data/api_scopes.xml": "6793eaf758f140e8137187ba20e65f4faccf53410433ae3ad7a8b3b38cb6b3b7",
-    "src/addons/Slions/Toc/_data/bb_codes.xml": "6b6f9746a5f08091eeff8933dab130c802c82273c7be894c37b41e72165a8fc6",
+    "src/addons/Slions/Toc/_data/bb_codes.xml": "46a430c4f0cc238d4e95a3ec9c3c5e01ff18abc238a51f900e0a04f70501cdd3",
     "src/addons/Slions/Toc/_data/bb_code_media_sites.xml": "29762987990187b33e43cfb68c08dc917b2d3f0176613d78f8e6c453f82da3f3",
     "src/addons/Slions/Toc/_data/class_extensions.xml": "ef6e049accd622f54f1a7b3afd273dd62781eff9dd885e0a137c7cb881069ee5",
     "src/addons/Slions/Toc/_data/code_events.xml": "8370dec3df47f91df4cf79da253446ad11b29f4ea568fe76c774e97a0379f0eb",

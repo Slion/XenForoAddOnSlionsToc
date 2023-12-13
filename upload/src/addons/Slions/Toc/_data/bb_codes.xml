@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bb_codes>
-  <bb_code bb_code_id="h1" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="0" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h1" active="1">
+  <bb_code bb_code_id="h1" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="1" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h1" active="1">
     <replace_html><![CDATA[]]></replace_html>
     <replace_html_email><![CDATA[]]></replace_html_email>
     <replace_text><![CDATA[]]></replace_text>
   </bb_code>
-  <bb_code bb_code_id="h2" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="0" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h2" active="1">
+  <bb_code bb_code_id="h2" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="1" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h2" active="1">
     <replace_html><![CDATA[]]></replace_html>
     <replace_html_email><![CDATA[]]></replace_html_email>
     <replace_text><![CDATA[]]></replace_text>
   </bb_code>
-  <bb_code bb_code_id="h3" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="0" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h3" active="1">
+  <bb_code bb_code_id="h3" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="1" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h3" active="1">
     <replace_html><![CDATA[]]></replace_html>
     <replace_html_email><![CDATA[]]></replace_html_email>
     <replace_text><![CDATA[]]></replace_text>
   </bb_code>
-  <bb_code bb_code_id="h4" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="0" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h4" active="1">
+  <bb_code bb_code_id="h4" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="1" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" editor_icon_type="fa" editor_icon_value="h4" active="1">
     <replace_html><![CDATA[]]></replace_html>
     <replace_html_email><![CDATA[]]></replace_html_email>
     <replace_text><![CDATA[]]></replace_text>
   </bb_code>
-  <bb_code bb_code_id="h5" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="0" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" active="1">
+  <bb_code bb_code_id="h5" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="1" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" active="1">
     <replace_html><![CDATA[]]></replace_html>
     <replace_html_email><![CDATA[]]></replace_html_email>
     <replace_text><![CDATA[]]></replace_text>
   </bb_code>
-  <bb_code bb_code_id="h6" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="0" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" active="1">
+  <bb_code bb_code_id="h6" bb_code_mode="callback" has_option="optional" callback_class="Slions\Toc\BbCode" callback_method="handleTagH" trim_lines_after="1" plain_children="1" disable_smilies="0" disable_nl2br="1" disable_autolink="0" allow_empty="0" allow_signature="0" active="1">
     <replace_html><![CDATA[]]></replace_html>
     <replace_html_email><![CDATA[]]></replace_html_email>
     <replace_text><![CDATA[]]></replace_text>
