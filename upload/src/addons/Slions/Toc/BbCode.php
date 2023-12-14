@@ -110,29 +110,18 @@ class BbCode
 		$tocId = BbCode::getTocId($entity);
 		//$output .= "This ID:" . BbCode::getToc($tocId)->mNextHeaderId . "<br/>";
 		//$output .= "TOC count:" . BbCode::getToc($tocId)->countEntries() . "<br/>";
-		if (BbCode::buildToc($tocId,$entity) && BBCode::doDebug($options))
+		if (BbCode::buildToc($tocId, $entity, $renderer, $options) && BBCode::doDebug($options))
 		{
 			$output .= "H rebuilt TOC<br/>";
 		}
 
 		$text = "";
-
-		// If ever we wanted to support rendering children tags we should do it here I guess
-		// Checkout XF/BbCode/Renderer/Html.php renderTagList and renderTagTable functions to see how they do it.
-		// For now however we decided to disable support for children tags as it does not make much sense anyway.		
-		if (count($tagChildren)==1) // No children when empty tag, test to avoid throwing exception
-		{
-			$text = $tagChildren[0];		
-		} 
-		else if (count($tagChildren)>1)
-		{
-			// We should never get there if the custom tags were defined properly
-			$text = "ERROR: Nested BB code not supported. Enable 'Stop parsing BB code' in custom BB code definition.";
-		}
-		//$text = implode('', array_merge_recursive($tagChildren));
-
-		// TODO: support rendering our $text italic, bold, underline and such I guess.
-		// Also smiley and unicode emoji icons I guess
+		
+		// See XF/BbCode/Renderer/Html.php renderTagList and renderTagTable functions to see how they do it.		
+		// Render our children has needed, that notably makes sure styles like bold and italic are applied.
+		// It also renders emojis as configured.
+		$text = $renderer->renderSubTree($tagChildren, $options);
+	
 
 		if (BbCode::isContextThreadPreview($renderer))
 		{
@@ -206,7 +195,7 @@ class BbCode
 		$entity = $options["entity"];
 
 		$tocId = BbCode::getTocId($entity);		
-		if (BbCode::buildToc($tocId,$entity) && BBCode::doDebug($options))
+		if (BbCode::buildToc($tocId, $entity, $renderer, $options) && BBCode::doDebug($options))
 		{
 			$output .= "TOC rebuilt<br/>";
 		}
@@ -244,14 +233,18 @@ class BbCode
 				$output .= 'Sub context: ' . print_r($renderer->getRules()->getSubContext(),true) . "<br />";
 			}
 
-			//\XF::dump("handleTagTOC");
-			//\XF::dump($tagChildren);
-			//\XF::dump($tagOption);
-			//\XF::dump($tag);
-			//\XF::dump($options);
-			//\XF::dump($renderer);
-			//\XF::dump($GLOBALS);			
-			//\XF::dump($renderer->getRules()->getContext());
+			\XF::dump("handleTagTOC");
+
+
+			\XF::dump($renderer->parser);
+			\XF::dump($renderer->ruleSet);
+			\XF::dump($tagChildren);
+			\XF::dump($tagOption);
+			\XF::dump($tag);
+			\XF::dump($options);
+			\XF::dump($renderer);
+			\XF::dump($GLOBALS);			
+			\XF::dump($renderer->getRules()->getContext());
 		}
 
 		return $output;
@@ -260,7 +253,7 @@ class BbCode
 	/**
 	 * Build our TOC from specified id and raw entity text.
 	 */
-	private static function buildToc($aTocId, $aEntity)
+	private static function buildToc($aTocId, $aEntity, $aRenderer, $aOptions)
 	{
 		// Entity object check was need as we were chocking on it while toggling between WYSIWYG and raw editor.
 
@@ -277,6 +270,8 @@ class BbCode
 		}
 
 		$toc = new Entry();
+		$toc->renderer = $aRenderer;
+		$toc->options = $aOptions;
 		$GLOBALS['slionsToc'.$aTocId] = $toc;
 		//$toc->mLastEditDate = $aEntity->getValue('last_edit_date');
 		$content = "";
@@ -341,6 +336,8 @@ class BbCode
 		{
 			// Create our new TOC entry
 			$tocEntry = new Entry();
+			$tocEntry->renderer = $aRenderer;
+			$tocEntry->options = $aOptions;
 			$tocEntry->mText = $header[3];
 			$tocEntry->mDepth = $headerDepth['h'.$header[1]];
 			// Workout our fragment id

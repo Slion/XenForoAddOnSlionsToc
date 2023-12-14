@@ -17,6 +17,9 @@ class Entry
 	// Only used by our root entry to help build our headers
 	public $mNextHeaderId = 0;
 	public $mLastEditDate = 0;
+
+	public $renderer;
+	public $options;
 	
 	/**
 	For debug purposes.
@@ -75,8 +78,19 @@ class Entry
 		$output = "";
 		if ($this->mDepth>0) // Skip the root node
 		{
+			$render = $this->mText;
+			
+			// For some reason our Html renderer class extension is not visible here 
+			// Or is it that that property was just not set
+			// That was happening when saving after edition. The renderer was of type SimpleHtml.
+			if (property_exists($this->renderer,'parser'))
+			{
+				// We need to render our heading text first so that nested BB and emojis are applied properly 
+				$render = $this->renderer->render($this->mText,$this->renderer->parser,$this->renderer->ruleSet,$this->options);
+			}
+			
 			//$output .= '<li><a href="'. $GLOBALS['requestUri'] .'#'. $this->mId . '">' . $this->mText . '</a></li>';
-			$output .= '<li><a href="#'. $this->mId . '">' . $this->mText . '</a></li>';
+			$output .= '<li><a href="#'. $this->mId . '">' . $render . '</a></li>';
 		}
 		
 		// Output our children if any

@@ -9,6 +9,22 @@ namespace Slions\Toc\XF\BbCode\Renderer;
 
 class Html extends XFCP_Html
 {
+	// We use those to be able to render our heading inside our TOC
+	public \XF\BbCode\Parser $parser;
+	public \XF\BbCode\RuleSet $ruleSet;
+
+
+	public function render($string, \XF\BbCode\Parser $parser, \XF\BbCode\RuleSet $rules, array $options = [])
+	{
+		// Provide access to parser and rules so that our TOC headings can be rendered too
+		$this->parser = $parser;
+		$this->ruleSet = $rules;
+		
+		// Just call parent implementation now
+		return parent::render($string, $parser, $rules, $options);
+	}
+
+
 
 	public function addDefaultTags()
 	{
