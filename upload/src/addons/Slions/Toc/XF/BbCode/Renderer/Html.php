@@ -7,6 +7,13 @@ namespace Slions\Toc\XF\BbCode\Renderer;
 #use XF\Template\Templater;
 #use XF\Util\Arr;
 
+/**
+ * This class renders BbCode to HTML notably for page view.
+ * 
+ * Based on \XF\BbCode\Renderer\Html
+ * Which derives from \XF\BbCode\Renderer\AbstractRenderer
+ * Which derives from \XF\BbCode\Traverser
+ */
 class Html extends XFCP_Html
 {
 	// We use those to be able to render our heading inside our TOC
@@ -17,6 +24,7 @@ class Html extends XFCP_Html
 	public function render($string, \XF\BbCode\Parser $parser, \XF\BbCode\RuleSet $rules, array $options = [])
 	{
 		// Provide access to parser and rules so that our TOC headings can be rendered too
+		// Is there a nicer way to do that?
 		$this->parser = $parser;
 		$this->ruleSet = $rules;
 		

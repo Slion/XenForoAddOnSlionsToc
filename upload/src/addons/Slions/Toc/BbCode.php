@@ -68,6 +68,9 @@ class BbCode
 		return $renderer->getRules()->getSubContext() == "thread_preview";
 	}
 
+	/**
+	 * Could we move this to the our Html renderer class?
+	 */
 	public static function handleTagH($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{
 		// Initialize our output early on to allow for debug
@@ -173,7 +176,7 @@ class BbCode
 	}
 
 	/**
-	 * 
+	 * Could we move this to the our Html renderer class?
 	 */
 	public static function handleTagTOC($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{		
