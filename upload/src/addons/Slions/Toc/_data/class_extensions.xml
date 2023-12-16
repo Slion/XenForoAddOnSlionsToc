@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <class_extensions>
+  <extension from_class="XF\BbCode\Renderer\AbstractRenderer" to_class="Slions\Toc\XF\BbCode\Renderer\AbstractRenderer" execute_order="10" active="1"/>
   <extension from_class="XF\BbCode\Renderer\EditorHtml" to_class="Slions\Toc\XF\BbCode\Renderer\EditorHtml" execute_order="10" active="1"/>
   <extension from_class="XF\BbCode\Renderer\Html" to_class="Slions\Toc\XF\BbCode\Renderer\Html" execute_order="10" active="1"/>
   <extension from_class="XF\Html\Renderer\BbCode" to_class="Slions\Toc\XF\Html\Renderer\BbCode" execute_order="10" active="1"/>

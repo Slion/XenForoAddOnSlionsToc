@@ -13,7 +13,7 @@ Visit [slions.net] to see what it looks like.
 
 # Release process
 
-Go to the root of your XenForo installation and set the new release version by running:
+Go to the root of your XenForo installation and set the new release [Version ID] by running:
 
 `php cmd.php xf-addon:bump-version Slions/Toc --version-id 2020100`
 
@@ -44,4 +44,4 @@ The generated ZIP file can be found in the following folder:
 [Anchor and TOC thread on XenForo]: https://xenforo.com/community/threads/bbcode-for-anchor-and-toc.171540/#post-1490421
 [TOC BB code implementation]: https://xenforo.com/community/threads/toc-bb-code-add-on-implementation.127502/
 [Modifying Froala editor options]: https://xenforo.com/community/threads/modifying-froala-editor-options.161305/
-[Version ID format]: https://xenforo.com/docs/dev/add-on-structure/#recommended-version-id-format
+[Version ID]: https://xenforo.com/docs/dev/add-on-structure/#recommended-version-id-format
