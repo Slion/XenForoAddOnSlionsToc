@@ -138,27 +138,21 @@ class BbCode
 			// Using custom data element we can store our anchor name for it to survive editor toggles between WYSIWYG and raw edit
 			// See:  https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
 
-			if (empty($tagOption))
+			if (empty(BbCode::getHeadingId($tagOption)))
 			{
 				$output .=  "<$tag[tag]>$text</$tag[tag]>";
 			}
 			else
 			{
-				$output .=  "<$tag[tag] data-id='$tagOption'>$text</$tag[tag]>";		
+				$output .=  "<$tag[tag] data-id='" + BbCode::getHeadingId($tagOption) + "'>$text</$tag[tag]>";		
 			}
 			
 		}
 		else
 		{
-			// Use count based id or anchor name if provided
-			if (empty($tagOption))
-			{
-				$id = $tocId . "-" . BbCode::getToc($tocId)->mNextHeaderId;
-			}
-			else
-			{
-				$id = $tocId . "-" . urlencode($tagOption);
-			}			
+
+			
+			$id = $tocId . "-" . urlencode(BbCode::getHeadingAnchorId($tagOption, $tocId));
 			
 			//$output .= '<' . $tag['tag'] .' class="block-header" id="'. $id .'">\n::before\n<a>' . $text . '</a>\n::after\n</' . $tag['tag'] .'>';
 			// Complex elements was needed to get the target to work well with theme floating top bar.
@@ -173,6 +167,44 @@ class BbCode
 		//$output .= "Next ID:" . BbCode::getToc($tocId)->mNextHeaderId . "<br/>";
 		
 		return $output;			
+	}
+
+	/**
+	 * Use count based id or anchor name if provided
+	 */
+	public static function getHeadingAnchorId($aOption, $aTocId)
+	{
+		$id = BbCode::getHeadingId($aOption);
+
+		// Still no ID fallback to auto numbering then
+		if (empty($id) && !empty($aTocId)) 
+		{
+			$id = BbCode::getToc($aTocId)->mNextHeaderId;
+		}
+
+		return $id;
+	}
+
+	/**
+	 * Get heading id from legacy or new options format
+	 */
+	public static function getHeadingId($aOption)
+	{
+		$id = "";
+
+		// Provide compatibility with older option format [H1=my id]
+		if (is_string($aOption)) 
+		{		
+			$id = $aOption;
+		}
+
+		// New option format [H1 id="my id"]
+		if (is_array($aOption) && array_key_exists('id', $aOption)) 
+		{
+			$id = $aOption['id'];
+		}
+
+		return $id;
 	}
 
 	/**
@@ -197,7 +229,7 @@ class BbCode
 
 		$entity = $options["entity"];
 
-		$tocId = BbCode::getTocId($entity);		
+		$tocId = BbCode::getTocId($entity);
 		if (BbCode::buildToc($tocId, $entity, $renderer, $options) && BBCode::doDebug($options))
 		{
 			$output .= "TOC rebuilt<br/>";
@@ -352,7 +384,18 @@ class BbCode
 			else 
 			{
 				// Otherwise use provided anchor name
-				$tocEntry->mId = $aTocId . "-" . urlencode($header[2]);					
+				// Parse new option such as [H1 id='my anchor']
+				// Needed to support new options format
+				if (preg_match('~\s+id\s*=\s*[\'"](.+)[\'"]~i',$header[2],$id)) 
+				{
+					$tocEntry->mId = $aTocId . "-" . urlencode($id[1]);
+				}
+				else
+				{
+					// Legacy options like [H1=my anchor]
+					$tocEntry->mId = $aTocId . "-" . urlencode($header[2]);
+				}
+				
 			}
 			
 			$tocEntry->mIndex = $count;

@@ -4,7 +4,7 @@
 - Provides the following BB codes:
   - TOC: For table of content placement.
   - H1, H2, H3, H4, H5, H6: For various headings level.  
-- Provides editor buttons for headings from level one to four and the table of content itself.
+- Editor buttons for headings and table of content.
 - Supports WYSIWYG editor.
 - Supports named anchor so you can reorganize headings in your post without worrying about broken links. Just do `[H1=anchor name]My heading[/H1]`
 
