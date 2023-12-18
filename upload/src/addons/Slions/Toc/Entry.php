@@ -3,8 +3,8 @@
 namespace Slions\Toc;
 
 /**
- Define an entry in our TOC.
-*/
+ * Define an entry in our TOC.
+ */
 class Entry
 {
 	public $mDepth = 0;
@@ -22,8 +22,8 @@ class Entry
 	public $options;
 	
 	/**
-	For debug purposes.
-	*/
+	 * For debug purposes.
+	 */
 	public function renderText($aDepth, $aMaxDepth)
 	{
 		if ($aDepth>$aMaxDepth)
@@ -50,8 +50,8 @@ class Entry
 	}
 	
 	/**
-	Render our TOC as HTML
-	*/
+	 * Render our TOC as HTML
+	 */
 	public function renderHtmlToc($aDepth, $aMaxDepth)
 	{
 		// Provide surrounding div
@@ -65,8 +65,8 @@ class Entry
 	}
 	
 	/**
-	Do proper HTML render.	
-	*/
+	 * Do proper HTML render.	
+	 */
 	private function renderHtml($aDepth, $aMaxDepth)
 	{
 		if ($aDepth>$aMaxDepth)
@@ -87,6 +87,11 @@ class Entry
 			{
 				// We need to render our heading text first so that nested BB and emojis are applied properly 
 				$render = $this->renderer->render($this->mText,$this->renderer->parser,$this->renderer->ruleSet,$this->options);
+			}
+			else
+			{
+				// We get there when coming back from the editor without having changed anything
+				//$render = "Not good";
 			}
 			
 			//$output .= '<li><a href="'. $GLOBALS['requestUri'] .'#'. $this->mId . '">' . $this->mText . '</a></li>';

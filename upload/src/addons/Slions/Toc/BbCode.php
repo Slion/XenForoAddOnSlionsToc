@@ -144,7 +144,7 @@ class BbCode
 			}
 			else
 			{
-				$output .=  "<$tag[tag] data-id='" + BbCode::getHeadingId($tagOption) + "'>$text</$tag[tag]>";		
+				$output .=  "<$tag[tag] data-id='" . BbCode::getHeadingId($tagOption) . "'>$text</$tag[tag]>";		
 			}
 			
 		}
@@ -234,6 +234,23 @@ class BbCode
 		{
 			$output .= "TOC rebuilt<br/>";
 		}
+
+		$min = 0;
+		$max = 8;
+
+		// Apply depth option if valid
+		if (is_array($tagOption))
+		{
+			if (array_key_exists('depth', $tagOption))
+			{
+				// Actually a string so that was not working
+				// is_int($tagOption['depth']) && 
+				if ($tagOption['depth']>=1)
+				{
+					$max = $tagOption['depth'];
+				}				
+			}
+		}
 		
 		
 		if($renderer instanceof \Slions\Toc\XF\BbCode\Renderer\EditorHtml)
@@ -248,7 +265,7 @@ class BbCode
 		// TODO: preview context?
 		else
 		{
-			$output .= BbCode::getToc($tocId)->renderHtmlToc(0,8);	
+			$output .= BbCode::getToc($tocId)->renderHtmlToc($min,$max);	
 		}
 
 
