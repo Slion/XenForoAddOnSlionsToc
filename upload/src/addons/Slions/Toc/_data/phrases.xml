@@ -28,11 +28,11 @@
   <phrase title="custom_bb_code_output.h5" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.h6" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.toc" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
-  <phrase title="custom_bb_code_title.h1" version_id="2020000" version_string="2.2.0"><![CDATA[Heading first level]]></phrase>
-  <phrase title="custom_bb_code_title.h2" version_id="2020000" version_string="2.2.0"><![CDATA[Heading second level]]></phrase>
-  <phrase title="custom_bb_code_title.h3" version_id="2020000" version_string="2.2.0"><![CDATA[Heading third level]]></phrase>
-  <phrase title="custom_bb_code_title.h4" version_id="2020000" version_string="2.2.0"><![CDATA[Heading fourth level]]></phrase>
-  <phrase title="custom_bb_code_title.h5" version_id="2020000" version_string="2.2.0"><![CDATA[Heading fifth level]]></phrase>
-  <phrase title="custom_bb_code_title.h6" version_id="2020000" version_string="2.2.0"><![CDATA[Heading sixth level]]></phrase>
-  <phrase title="custom_bb_code_title.toc" version_id="2020000" version_string="2.2.0"><![CDATA[Table Of Content]]></phrase>
+  <phrase title="custom_bb_code_title.h1" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading first level]]></phrase>
+  <phrase title="custom_bb_code_title.h2" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading second level]]></phrase>
+  <phrase title="custom_bb_code_title.h3" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading third level]]></phrase>
+  <phrase title="custom_bb_code_title.h4" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC:  Heading fourth level]]></phrase>
+  <phrase title="custom_bb_code_title.h5" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading fifth level]]></phrase>
+  <phrase title="custom_bb_code_title.h6" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading sixth level]]></phrase>
+  <phrase title="custom_bb_code_title.toc" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Table Of Content]]></phrase>
 </phrases>
