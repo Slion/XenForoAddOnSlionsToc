@@ -17,9 +17,6 @@ class Entry
 	// Only used by our root entry to help build our headers
 	public $mNextHeaderId = 0;
 	public $mLastEditDate = 0;
-
-	public $renderer;
-	public $options;
 	
 	/**
 	 * For debug purposes.
@@ -78,11 +75,12 @@ class Entry
 		$output = "";
 		if ($this->mDepth>0) // Skip the root node
 		{
+			/*
 			$render = $this->mText;
 			
 			// For some reason our Html renderer class extension is not visible here 
 			// Or is it that that property was just not set
-			// That was happening when saving after edition. The renderer was of type SimpleHtml.
+			// That was happening when saving after edition. The renderer was of type SimpleHtml.			
 			if (property_exists($this->renderer,'parser'))
 			{
 				// We need to render our heading text first so that nested BB and emojis are applied properly 
@@ -93,9 +91,10 @@ class Entry
 				// We get there when coming back from the editor without having changed anything
 				//$render = "Not good";
 			}
+			*/
 			
 			//$output .= '<li><a href="'. $GLOBALS['requestUri'] .'#'. $this->mId . '">' . $this->mText . '</a></li>';
-			$output .= '<li><a href="#'. $this->mId . '">' . $render . '</a></li>';
+			$output .= '<li><a href="#'. $this->mId . '">' . $this->mText . '</a></li>';
 		}
 		
 		// Output our children if any
@@ -119,6 +118,15 @@ class Entry
 	 */
 	public function addTocEntry($aNewTocEntry)
 	{	
+		/*
+		if ($this->mDepth == 0) 
+		{
+			if ($this->idExists($aNewTocEntry->mId))
+			{
+				return false;
+			}
+		}*/
+
 		// Check if it's potentially one of our children
 		if ($aNewTocEntry->mDepth > $this->mDepth)
 		{
@@ -159,6 +167,26 @@ class Entry
 		}
 
 		return $count;
+	}
+
+	/**
+	 *
+	 */
+	public function idExists($aId)
+	{
+		//$count = count($this->mChildren);
+
+		foreach($this->mChildren as $child)
+		{
+			if ($child->mId == $aId) 
+			{
+				return true;
+			}
+
+			return $child->idExists($aId);
+		}
+
+		return false;
 	}
 
 	/**

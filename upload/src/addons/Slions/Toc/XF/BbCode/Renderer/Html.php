@@ -9,6 +9,8 @@ namespace Slions\Toc\XF\BbCode\Renderer;
 
 /**
  * This class renders BbCode to HTML notably for page view.
+ * It is calling custom BbCode callbacks from renderTag.
+ * Custom BbCode can notably use renderSubTree to render children BbCodes and other content such as emojis, smiley, markdown, I guess.
  * 
  * Based on \XF\BbCode\Renderer\Html
  * Which derives from \XF\BbCode\Renderer\AbstractRenderer
@@ -16,23 +18,6 @@ namespace Slions\Toc\XF\BbCode\Renderer;
  */
 class Html extends XFCP_Html
 {
-	// We use those to be able to render our heading inside our TOC
-	public \XF\BbCode\Parser $parser;
-	public \XF\BbCode\RuleSet $ruleSet;
-
-
-	public function render($string, \XF\BbCode\Parser $parser, \XF\BbCode\RuleSet $rules, array $options = [])
-	{
-		// Provide access to parser and rules so that our TOC headings can be rendered too
-		// Is there a nicer way to do that?
-		$this->parser = $parser;
-		$this->ruleSet = $rules;
-		
-		// Just call parent implementation now
-		return parent::render($string, $parser, $rules, $options);
-	}
-
-
 
 	public function addDefaultTags()
 	{
@@ -49,9 +34,41 @@ class Html extends XFCP_Html
 		//$this->addTag('h6', ['replace' => ['<h6>', '</h6>']]);
 		//$this->addTag('doo', ['replace' => ['<h1>', '</h1>']]);
 
+	}
 
+	/**
+	 * Inject our rendered TOC and reset it.
+	 */
+	public function filterFinalOutput($output)
+	{
+		\XF::logError("Html::filterFinalOutput");
 
+		// $tocId = 0;
+		// $min = 0;
+		// $max = 8;
 
+		// Look-up our special TOC marker and extract id, min and max depth
+		$output = preg_replace_callback('~\[TOC-(\d+)-(\d+)-(\d+)\]~i', function ($matches) 
+		{
+            $render = \Slions\Toc\BbCode::getToc($matches[1])->renderHtmlToc($matches[2],$matches[3]);
+			//
+			\Slions\Toc\BbCode::resetToc($matches[1]);
+			return $render;
+        }
+		, $output);
+
+		//{
+			// $tocId = $res[1];
+			// $min = $res[2];
+			// $max = $res[3];
+			
+			// $tocRender = Slions\Toc\BbCode::getToc($tocId)->renderHtmlToc($min,$max);
+		//}
+		
+
+		// TODO: render our TOC
+
+		return parent::filterFinalOutput($output);
 	}
 
 }

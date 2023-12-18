@@ -34,9 +34,17 @@ class BbCode
 	/**
 	 * Fetch our TOC root entry from the given id.
 	 */
-	private static function getToc($aTocId)
+	public static function getToc($aTocId)
 	{		
 		return $GLOBALS['slionsToc'.$aTocId];
+	} 
+
+	/**
+	 * Fetch our TOC root entry from the given id.
+	 */
+	public static function resetToc($aTocId)
+	{		
+		unset($GLOBALS['slionsToc'.$aTocId]);
 	} 
 
 	/**
@@ -73,6 +81,7 @@ class BbCode
 	 */
 	public static function handleTagH($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{
+		\XF::logError("handleTagH - " . get_class($renderer));
 		// Initialize our output early on to allow for debug
 		$output = "";
 
@@ -113,13 +122,16 @@ class BbCode
 		$tocId = BbCode::getTocId($entity);
 		//$output .= "This ID:" . BbCode::getToc($tocId)->mNextHeaderId . "<br/>";
 		//$output .= "TOC count:" . BbCode::getToc($tocId)->countEntries() . "<br/>";
-		if (BbCode::buildToc($tocId, $entity, $renderer, $options) && BBCode::doDebug($options))
+		if (BbCode::buildToc($tocId, $entity) && BBCode::doDebug($options))
 		{
 			$output .= "H rebuilt TOC<br/>";
 		}
 
 		$text = "";
 		
+		$id = "";
+
+
 		// See XF/BbCode/Renderer/Html.php renderTagList and renderTagTable functions to see how they do it.		
 		// Render our children has needed, that notably makes sure styles like bold and italic are applied.
 		// It also renders emojis as configured.
@@ -148,10 +160,14 @@ class BbCode
 			}
 			
 		}
-		else
+		else if($renderer instanceof \Slions\Toc\XF\BbCode\Renderer\SimpleHtml)
 		{
-
-			
+			// Not sure why this is happening after saving from editor
+			$output .=  "<$tag[tag]>$text</$tag[tag]>";
+			// See: https://xenforo.com/community/threads/when-is-the-simplehtml-renderer-used.218309/
+		}
+		else
+		{			
 			$id = $tocId . "-" . urlencode(BbCode::getHeadingAnchorId($tagOption, $tocId));
 			
 			//$output .= '<' . $tag['tag'] .' class="block-header" id="'. $id .'">\n::before\n<a>' . $text . '</a>\n::after\n</' . $tag['tag'] .'>';
@@ -160,13 +176,28 @@ class BbCode
 			//$output .= "<span class='u-anchorTarget' id='$id'></span><div class='block-container'><$tag[tag] class='block-header'><a href='#$id'>$text</a></$tag[tag]></div>";			
 			//$output .= "<span class='u-anchorTarget' id='$id'></span><$tag[tag] class='block-header'><a href='#$id'>$text</a></$tag[tag]>";
 			$output .= "<span class='u-anchorTarget' id='$id'></span><$tag[tag]><a href='#$id'>$text</a></$tag[tag]>";
+
+			// Create our new TOC entry
+			$tocEntry = new Entry();
+			// Provided rendered output
+			$tocEntry->mText = $text;
+			// Get the heading level, which is the last char of our tag name H1, H2...
+			$tocEntry->mDepth = (int)($tag['tag'][-1]);
+			//
+			$tocEntry->mId = $id;
+			//
+			$tocEntry->mIndex = BbCode::getToc($tocId)->mNextHeaderId;
+
+			// Increment our header index
+			BbCode::getToc($tocId)->mNextHeaderId++;
+			//$output .= "Next ID:" . BbCode::getToc($tocId)->mNextHeaderId . "<br/>";
+
+			BbCode::getToc($tocId)->addTocEntry($tocEntry);
+
 		}	
 				
-		// Increment our header index
-		BbCode::getToc($tocId)->mNextHeaderId++;
-		//$output .= "Next ID:" . BbCode::getToc($tocId)->mNextHeaderId . "<br/>";
 		
-		return $output;			
+		return $output;
 	}
 
 	/**
@@ -208,10 +239,12 @@ class BbCode
 	}
 
 	/**
-	 * Could we move this to the our Html renderer class?
+	 * Could we move this to our Html renderer class?
 	 */
 	public static function handleTagTOC($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{		
+		\XF::logError("handleTagTOC - " . get_class($renderer));
+
 		// Initialize our output early on to allow for debug
 		$output = "";
 
@@ -230,7 +263,7 @@ class BbCode
 		$entity = $options["entity"];
 
 		$tocId = BbCode::getTocId($entity);
-		if (BbCode::buildToc($tocId, $entity, $renderer, $options) && BBCode::doDebug($options))
+		if (BbCode::buildToc($tocId, $entity) && BBCode::doDebug($options))
 		{
 			$output .= "TOC rebuilt<br/>";
 		}
@@ -263,9 +296,11 @@ class BbCode
 			$output .=  "<p>[TOC][/TOC]</p>";
 		}
 		// TODO: preview context?
-		else
+		else //if ($renderer instanceof \Slions\Toc\XF\BbCode\Renderer\Html)
 		{
-			$output .= BbCode::getToc($tocId)->renderHtmlToc($min,$max);	
+			// Leave our marker to replace it from filterFinalOutput with our actual TOC
+			$output .=  "[TOC-$tocId-$min-$max]";
+			//$output .= BbCode::getToc($tocId)->renderHtmlToc($min,$max);	
 		}
 
 
@@ -305,9 +340,9 @@ class BbCode
 	/**
 	 * Build our TOC from specified id and raw entity text.
 	 */
-	private static function buildToc($aTocId, $aEntity, $aRenderer, $aOptions)
+	private static function buildToc($aTocId, $aEntity)
 	{
-		// Entity object check was need as we were chocking on it while toggling between WYSIWYG and raw editor.
+		// Entity object check was needed as we were chocking on it while toggling between WYSIWYG and raw editor.
 
 		if (array_key_exists('slionsToc'.$aTocId, $GLOBALS)
 		// If the TOC was already created but there was an edit we need to reset it
@@ -322,8 +357,6 @@ class BbCode
 		}
 
 		$toc = new Entry();
-		$toc->renderer = $aRenderer;
-		$toc->options = $aOptions;
 		$GLOBALS['slionsToc'.$aTocId] = $toc;
 		//$toc->mLastEditDate = $aEntity->getValue('last_edit_date');
 		$content = "";
@@ -376,6 +409,7 @@ class BbCode
 			return false;
 		}
 
+		/*
 		// Parse our headers out of the raw text of our post
 		$headers=array(); // This will contain the output of our parsing
 		preg_match_all('~\[h([1-6])=?(.*?)](.*?)\[/h\1\]~i',$content,$headers,PREG_SET_ORDER);
@@ -420,6 +454,7 @@ class BbCode
 			$toc->addTocEntry($tocEntry);	
 			$count++;
 		}
+		*/
 
 		return true;
 	}
