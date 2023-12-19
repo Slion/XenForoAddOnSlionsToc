@@ -13,14 +13,14 @@
   <phrase title="custom_bb_code_example.h4" version_id="2020000" version_string="2.2.0"><![CDATA[[h4]Fourth level[/h4]]]></phrase>
   <phrase title="custom_bb_code_example.h5" version_id="2020000" version_string="2.2.0"><![CDATA[[H5=linkanchor]Five level down[/H5]]]></phrase>
   <phrase title="custom_bb_code_example.h6" version_id="2020000" version_string="2.2.0"><![CDATA[[H6]Last level[/H6]]]></phrase>
-  <phrase title="custom_bb_code_example.toc" version_id="2020000" version_string="2.2.0"><![CDATA[[TOC][/TOC]
+  <phrase title="custom_bb_code_example.toc" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[[TOC depth='5'][/TOC]
 
-[h1=anchor one]Heading One[/h1]
-[h2]Heading Two[/h2]
-[h3]Heading Three[/h3]
-[h4]Heading Four[/h4]
-[h5]Heading Five[/h5]
-[h6]Heading Six[/h6]]]></phrase>
+[H1 id='anchor one']Heading One[/H1]
+[H2=heading-two]Heading Two[/H2]
+[H3]Heading Three[/H3]
+[H4]Heading Four[/H4]
+[H5]Heading Five[/H5]
+[H6]Heading Six[/H6]]]></phrase>
   <phrase title="custom_bb_code_output.h1" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.h2" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
   <phrase title="custom_bb_code_output.h3" version_id="0" version_string="0.0.1"><![CDATA[]]></phrase>
