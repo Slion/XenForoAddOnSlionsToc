@@ -195,8 +195,7 @@ class BbCode
 			BbCode::getToc($tocId)->addTocEntry($tocEntry);
 
 		}	
-				
-		
+						
 		return $output;
 	}
 
@@ -350,11 +349,15 @@ class BbCode
 		// We could not get this working for some reason after inline edit so with use the date check below and that worked just fine 
 		//&& !BbCode::getToc($aTocId)->isComplete()
 		// If our entity was edited since generated our TOC it is not valid anymore
-		&& (is_object($aEntity) && BbCode::getToc($aTocId)->mLastEditDate == $aEntity->last_edit_date))
+		&& ((is_object($aEntity) && BbCode::getToc($aTocId)->mLastEditDate == $aEntity->last_edit_date) 
+		// Needed for BB code Help rendering
+		|| $aTocId == 0))
 		{
 			// This TOC was already created and is still valid
 			return false;
 		}
+
+		\XF::logError("buildToc - create new TOC - $aTocId");
 
 		$toc = new Entry();
 		$GLOBALS['slionsToc'.$aTocId] = $toc;
@@ -368,6 +371,7 @@ class BbCode
 		}
 		
 
+		/*
 		$headerDepth = array
 			(
 				'h1' => 1,
@@ -376,8 +380,9 @@ class BbCode
 				'h4' => 4,
 				'h5' => 5,
 				'h6' => 6
-			);
-				
+			);			
+		*/
+
 		//$output .= $options['user']->user_id  . "<br />"; 
 		//$output .= $renderer->getRules()->getContext() . "-" . $renderer->getRules()->getSubContext() . "<br />";
 
@@ -387,20 +392,22 @@ class BbCode
 		//return $output;
 				
 		// Faking some render for our help page		
+		/*
 		if ($aEntity==null 
 		&& endsWith($GLOBALS['_ENV']['REQUEST_URI'],'/help/bb-codes/'))
 		{
 			// Assuming help page I guess
 			$content =<<<CNT
 			[TOC][/TOC]
-			[h1=anchor one]Heading One[/h1]
-			[h2]Heading Two[/h2]
-			[h3]Heading Three[/h3]
-			[h4]Heading Four[/h4]
-			[h5]Heading Five[/h5]
-			[h6]Heading Six[/h6]
+			[H1=anchor one]Heading One[/H1]
+			[H2]Heading Two[/H2]
+			[H3]Heading Three[/H3]
+			[H4]Heading Four[/H4]
+			[H5]Heading Five[/H5]
+			[H6]Heading Six[/H6]
 			CNT;
 		}
+		*/
 		
 		if (empty($content))
 		{

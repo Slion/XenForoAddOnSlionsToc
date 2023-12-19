@@ -57,6 +57,10 @@ class Html extends XFCP_Html
         }
 		, $output);
 
+		// Added that for BB code help page to render properly
+		// See: https://staging.slions.net/help/bb-codes/
+		\Slions\Toc\BbCode::resetToc(0);
+
 		//{
 			// $tocId = $res[1];
 			// $min = $res[2];
