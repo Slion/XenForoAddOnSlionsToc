@@ -16,7 +16,8 @@ class BbCode extends XFCP_BbCode
 
 	/**
 	 * Handles heading tags.
-	 *
+	 * This only works because we override that existing heading handler.
+	 * 
 	 * @param string $text Child text of the tag
 	 * @param Tag $tag HTML tag triggering call
 	 *
