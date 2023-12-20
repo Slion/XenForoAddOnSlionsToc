@@ -81,7 +81,7 @@ class BbCode
 	 */
 	public static function handleTagH($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{
-		\XF::logError("handleTagH - " . get_class($renderer));
+		//\XF::logError("handleTagH - " . get_class($renderer));
 		// Initialize our output early on to allow for debug
 		$output = "";
 
@@ -242,7 +242,7 @@ class BbCode
 	 */
 	public static function handleTagTOC($tagChildren, $tagOption, $tag, array $options, \XF\BbCode\Renderer\AbstractRenderer $renderer)
 	{		
-		\XF::logError("handleTagTOC - " . get_class($renderer));
+		//\XF::logError("handleTagTOC - " . get_class($renderer));
 
 		// Initialize our output early on to allow for debug
 		$output = "";
@@ -357,7 +357,7 @@ class BbCode
 			return false;
 		}
 
-		\XF::logError("buildToc - create new TOC - $aTocId");
+		//\XF::logError("buildToc - create new TOC - $aTocId");
 
 		$toc = new Entry();
 		$GLOBALS['slionsToc'.$aTocId] = $toc;

@@ -41,7 +41,7 @@ class Html extends XFCP_Html
 	 */
 	public function filterFinalOutput($output)
 	{
-		\XF::logError("Html::filterFinalOutput");
+		//\XF::logError("Html::filterFinalOutput");
 
 		// $tocId = 0;
 		// $min = 0;

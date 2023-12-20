@@ -21,7 +21,7 @@ class SimpleHtml extends XFCP_SimpleHtml
 	 */
 	public function filterFinalOutput($output)
 	{
-		\XF::logError("SimpleHtml::filterFinalOutput");
+		//\XF::logError("SimpleHtml::filterFinalOutput");
 
         $output = preg_replace_callback('~\[TOC-(\d+)-(\d+)-(\d+)\]~i', function ($matches) 
 		{
