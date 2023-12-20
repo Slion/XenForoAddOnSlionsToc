@@ -46,11 +46,11 @@ class BbCode extends XFCP_BbCode
 			// To generate our anchor name first URL encode our text and then throw away any URL encoded character that would look like garbadge in the address.
 			// That will notably discard emoji and other unicode characters. If the result is empty we don't care it will still receive incremental id at render time then. 
 			$anchorid = preg_replace('/%[0-9A-F]{2}/', '', urlencode($text));		
-			return '[' . $tagName . '=' . $anchorid . ']' . $text . "[/". $tagName ."]";
+			return '[' . $tagName . ' id=\'' . $anchorid . "']" . $text . "[/". $tagName ."]";
 		}
 		else
 		{
-			return '[' . $tagName . '=' . $id . ']' . $text . "[/". $tagName ."]";
+			return '[' . $tagName . ' id=\'' . $id . "']" . $text . "[/". $tagName ."]";
 		}		
 	}
 
