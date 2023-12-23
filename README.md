@@ -29,12 +29,13 @@ The generated ZIP file can be found in the following folder:
 
 - [Add-on available on XenForo.com]
 - [XenForo Development Tools]
+- [XenForo BB code option keys]
 - [TOC BB code implementation]
 - [Porting TOC to XF2]
 - [Render Custom BB code for WYSIWYG editor]
 - [Anchor and TOC thread on XenForo]
 - [Modifying Froala editor options]
-- [Version ID format]
+- [Version ID]
 
 [slions.net]: https://slions.net/resources/fulguris.10/
 [XenForo Development Tools]: https://xenforo.com/docs/dev/development-tools
@@ -45,3 +46,4 @@ The generated ZIP file can be found in the following folder:
 [TOC BB code implementation]: https://xenforo.com/community/threads/toc-bb-code-add-on-implementation.127502/
 [Modifying Froala editor options]: https://xenforo.com/community/threads/modifying-froala-editor-options.161305/
 [Version ID]: https://xenforo.com/docs/dev/add-on-structure/#recommended-version-id-format
+[XenForo BB code option keys]: https://xenforo.com/community/threads/font-awesome-5-editor-button-management-markdown-support-and-more.154701/#post-1287382

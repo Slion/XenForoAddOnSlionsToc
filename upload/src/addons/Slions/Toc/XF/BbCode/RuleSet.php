@@ -8,8 +8,7 @@ namespace Slions\Toc\XF\BbCode;
 #use XF\Util\Arr;
 
 /**
- * Not actually used.
- * Not sure why it did not work when we defined our parser here instead than in the Html renderer.
+ * 
  */
 class RuleSet extends XFCP_RuleSet
 {
