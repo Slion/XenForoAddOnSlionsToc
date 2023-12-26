@@ -1,2 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<templates/>
+<templates>
+  <template type="public" title="slions_toc_core.less" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[/* --- slions_toc.css --- BEGIN */
+/* Post TOC styling */
+div.postToc 
+{	
+	.xf-slionsTocContainer();
+}
+
+div.postTocInner {
+    //background-color: @textCtrlBackground;
+    //margin: 1px;
+    //border-style: solid;
+    //border-width: 1px;    
+    //border-color: @textCtrlBackground;
+}
+
+
+.postToc a {
+    //color: @secondaryLight !important;
+    //text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    //font-weight: bold;
+    //margin: 0 !important;
+    //padding: 0 !important;
+	.xf-slionsTocEntry();
+}
+
+.postToc a:hover {
+    //text-decoration: underline;
+    //background-color: @textCtrlBackground;
+}
+
+//
+.postToc ul li {
+    list-style: none !important;
+}
+
+// Reset weird XF styles
+.postToc ul:not(.is-structureList) {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+// Reset user agent styles
+.postToc ul {	
+    margin: 0;
+    padding: 0;	    
+}
+
+// Typically used to apply TOC level indentation
+.postToc ul > ul {
+	.xf-slionsTocLevel();
+    //margin: 15px;
+    //padding: 0px;	    
+}
+
+/**
+TOC headers styling
+Classes with fr prefix are for Froala editor.
+*/
+
+.fr-element.fr-view h1, .bbWrapper h1,
+.fr-element.fr-view h2, .bbWrapper h2,
+.fr-element.fr-view h3, .bbWrapper h3,
+.fr-element.fr-view h4, .bbWrapper h4,
+.fr-element.fr-view h5, .bbWrapper h5,
+.fr-element.fr-view h6, .bbWrapper h6
+{
+	//padding: 0;
+	//margin: 0 0 0 0;
+	.xf-slionsTocHeadings();
+      
+   //margin: 0.0em 0 0.0em 0;
+	
+   //margin-block-start: 0.0em;
+   //margin-block-end: 0.0em;
+	/*
+
+   //color: @secondaryLight;
+   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+   font-weight: @xf-fontWeightNormal;
+   // Was needed to let header fit next to floating TOC on XF v2.2.2
+   clear: none
+	*/
+}
+
+.fr-element.fr-view h1, .bbWrapper h1
+{
+	.xf-slionsTocH1();
+    //font-size: @xf-fontSizeLargest;
+    //margin-left: 5px;
+}
+
+.fr-element.fr-view h2, .bbWrapper h2
+{
+	.xf-slionsTocH2();
+    //font-size: @xf-fontSizeLarger;
+    //margin-left: 15px;
+}
+
+.fr-element.fr-view h3, .bbWrapper h3
+{
+	.xf-slionsTocH3();
+   	//font-size: @xf-fontSizeLarge;
+   	//margin-left: 25px;
+}
+
+.fr-element.fr-view h4, .bbWrapper h4
+{
+	.xf-slionsTocH4();
+   	//font-size: @xf-fontSizeLarge;
+   	//margin-left: 35px;
+}
+
+.fr-element.fr-view h5, .bbWrapper h5
+{
+	.xf-slionsTocH5();
+   	//font-size: @xf-fontSizeLarge;
+   	//margin-left: 45px;
+}
+
+.fr-element.fr-view h6, .bbWrapper h6
+{
+	.xf-slionsTocH6();
+   	//font-size: @xf-fontSizeLarge;
+   	//margin-left: 55px;
+}
+
+/* Fix Froala bug in paragraph dropdown list */
+ul.fr-dropdown-list h5,
+ul.fr-dropdown-list h6
+{
+   font-size: 15px;
+}
+
+/* --- slions_toc.css --- END */]]></template>
+  <template type="public" title="slions_toc_editor" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[<xf:js>
+$(document).on('editor:config', function( aEvent, aConfig, aEditor) {
+	//console.log(aConfig.paragraphFormat);
+	// Instead of just assigning we want to merge our values with our input…
+	// …to make sure we are compatible with other addons doing the same.
+	// We also need to make sure keys are properly ordered.
+	var paraFormat = {}
+	var paraFormatOrdered =	{
+					N: 'Normal',
+					H1: 'Heading 1',
+					H2: 'Heading 2',
+					H3: 'Heading 3',
+					H4: 'Heading 4',
+// Leave those guys out as they are unlikely to be ever used…
+// …and they make our dropdown menu overflow and spawn a scrollbar
+					H5: 'Heading 5',
+					H6: 'Heading 6'
+				}
+	// Init our output object to have proper key order
+	Object.assign(paraFormat,paraFormatOrdered);
+	// Carry over members from our input
+	Object.assign(paraFormat,aConfig.paragraphFormat);
+	// Make sure we still have our intended values
+	aConfig.paragraphFormat = Object.assign(paraFormat,paraFormatOrdered);
+	//console.log(aConfig.paragraphFormat);
+});	
+</xf:js>]]></template>
+</templates>

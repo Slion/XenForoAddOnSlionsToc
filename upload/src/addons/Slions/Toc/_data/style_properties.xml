@@ -1,2 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style_properties/>
+<style_properties>
+  <style_property property_name="slionsTocContainer" group_name="slions_toc" title="Container" description="Styles of table of content container. Typically used to define borders and padding." property_type="css" display_order="0" css_components="background,border,border_radius,padding,extra">
+    <value>{
+    "background-color": "@xf-contentAltBg",
+    "border-width": "1px",
+    "border-color": "@xf-borderColorHeavy",
+    "border-radius": "@xf-borderRadiusLarge",
+    "padding": "1em",
+    "extra": "// When page is wide enough make our TOC float\n@media (min-width: @xf-responsiveMedium) {\t\t\n\tfloat: right;\n\tposition: relative;\n\tz-index:100;\n}"
+}</value>
+  </style_property>
+  <style_property property_name="slionsTocEntry" group_name="slions_toc" title="Entry" description="Styles of entries in our table of content. Typically used to define typography attributes." property_type="css" display_order="0" css_components="text,padding,extra">
+    <value>{
+    "font-size": "@xf-fontSizeLarge",
+    "font-weight": "@xf-fontWeightNormal"
+}</value>
+  </style_property>
+  <style_property property_name="slionsTocH1" group_name="slions_toc" title="Heading 1" description="Styles of H1 elements." property_type="css" display_order="10" css_components="text,background,border,border_radius,padding,extra">
+    <value>[]</value>
+  </style_property>
+  <style_property property_name="slionsTocH2" group_name="slions_toc" title="Heading 2" description="Styles of H2 elements." property_type="css" display_order="10" css_components="text,background,border,border_radius,padding,extra">
+    <value>[]</value>
+  </style_property>
+  <style_property property_name="slionsTocH3" group_name="slions_toc" title="Heading 3" description="Styles of H3 elements." property_type="css" display_order="10" css_components="text,background,border,border_radius,padding,extra">
+    <value>[]</value>
+  </style_property>
+  <style_property property_name="slionsTocH4" group_name="slions_toc" title="Heading 4" description="Styles of H4 elements." property_type="css" display_order="10" css_components="text,background,border,border_radius,padding,extra">
+    <value>[]</value>
+  </style_property>
+  <style_property property_name="slionsTocH5" group_name="slions_toc" title="Heading 5" description="Styles of H5 elements." property_type="css" display_order="10" css_components="text,background,border,border_radius,padding,extra">
+    <value>{
+    "font-size": "@xf-fontSizeNormal",
+    "padding-left": "10px"
+}</value>
+  </style_property>
+  <style_property property_name="slionsTocH6" group_name="slions_toc" title="Heading 6" description="Styles of H6 elements." property_type="css" display_order="10" css_components="text,background,border,border_radius,padding,extra">
+    <value>{
+    "font-size": "@xf-fontSizeNormal",
+    "padding-left": "20px"
+}</value>
+  </style_property>
+  <style_property property_name="slionsTocHeadings" group_name="slions_toc" title="Headings" description="Properties common to all headings from H1 to H6." property_type="css" display_order="9" css_components="text,background,border,border_radius,padding,extra">
+    <value>{
+    "padding-top": "1em",
+    "extra": "// Needed to let headings fit next to our floating TOC\nclear: none;\n// Fix large spacing between headings\nmargin: 0 0 0 0;"
+}</value>
+  </style_property>
+  <style_property property_name="slionsTocLevel" group_name="slions_toc" title="Entry level" description="Use this to apply table of content level indentation." property_type="css" display_order="0" css_components="padding,extra">
+    <value>{
+    "padding-left": "1em"
+}</value>
+  </style_property>
+</style_properties>

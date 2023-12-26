@@ -35,4 +35,26 @@
   <phrase title="custom_bb_code_title.h5" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading fifth level]]></phrase>
   <phrase title="custom_bb_code_title.h6" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Heading sixth level]]></phrase>
   <phrase title="custom_bb_code_title.toc" version_id="2021351" version_string="2.2.13 Release Candidate 1"><![CDATA[TOC: Table Of Content]]></phrase>
+  <phrase title="style_prop.slionsTocContainer" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Container]]></phrase>
+  <phrase title="style_prop.slionsTocEntry" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Entry]]></phrase>
+  <phrase title="style_prop.slionsTocH1" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Heading 1]]></phrase>
+  <phrase title="style_prop.slionsTocH2" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Heading 2]]></phrase>
+  <phrase title="style_prop.slionsTocH3" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Heading 3]]></phrase>
+  <phrase title="style_prop.slionsTocH4" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Heading 4]]></phrase>
+  <phrase title="style_prop.slionsTocH5" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Heading 5]]></phrase>
+  <phrase title="style_prop.slionsTocH6" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Heading 6]]></phrase>
+  <phrase title="style_prop.slionsTocHeadings" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Headings]]></phrase>
+  <phrase title="style_prop.slionsTocLevel" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Entry level]]></phrase>
+  <phrase title="style_prop_desc.slionsTocContainer" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of table of content container. Typically used to define borders and padding.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocEntry" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of entries in our table of content. Typically used to define typography attributes.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocH1" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of H1 elements.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocH2" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of H2 elements.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocH3" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of H3 elements.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocH4" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of H4 elements.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocH5" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of H5 elements.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocH6" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Styles of H6 elements.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocHeadings" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Properties common to all headings from H1 to H6.]]></phrase>
+  <phrase title="style_prop_desc.slionsTocLevel" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Use this to apply table of content level indentation.]]></phrase>
+  <phrase title="style_prop_group.slions_toc" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Slions - Table of Content]]></phrase>
+  <phrase title="style_prop_group_desc.slions_toc" version_id="2021353" version_string="2.2.13 Release Candidate 3"><![CDATA[Style properties for Slions Table of Content Add-On]]></phrase>
 </phrases>

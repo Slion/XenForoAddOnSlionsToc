@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style_property_groups/>
+<style_property_groups>
+  <style_property_group group_name="slions_toc" title="Slions - Table of Content" description="Style properties for Slions Table of Content Add-On" display_order="28100"/>
+</style_property_groups>
